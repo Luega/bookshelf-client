@@ -13,5 +13,8 @@ export class BookService {
   getBooks(): Observable<Book[]> {
     return this.httpClient.get<Book[]>('https://localhost:7156/api/Books');
   }
-  
+
+  removeBook(id: string) {
+    return this.httpClient.delete('https://localhost:7156/api/Books/' + id);
+  }
 }

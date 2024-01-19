@@ -1,5 +1,5 @@
-<div *ngIf="books" class="container-fluid">
-    <div class="row text-center">
+<div *ngIf="books.length > 0" class="container-fluid  text-center">
+    <div class="row">
         <div class="col">
             <p>ID</p>
         </div>
@@ -21,7 +21,11 @@
         <div class="col">
             <p>Publication date</p>
         </div>
+        <div class="col">
+        </div>
+        <div class="col">
+        </div>
     </div>
-    <app-book-card *ngFor="let b of books" [book]="b">
+    <app-book-card *ngFor="let b of books" [book]="b" (bookRemoved)="onBookRemoved(b.id!)">
     </app-book-card>
 </div>

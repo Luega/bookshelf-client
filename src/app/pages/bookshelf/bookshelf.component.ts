@@ -8,7 +8,7 @@ import { Book } from 'src/app/models/book.model';
   styleUrls: ['./bookshelf.component.css']
 })
 export class BookshelfComponent implements OnInit {
-  books?: Book[];
+  books: Book[] = [];
 
   constructor(private bookService: BookService) { }
 
@@ -29,8 +29,12 @@ export class BookshelfComponent implements OnInit {
   }
 
   convertStringDatesToObjects(bookArray: Book[]) {
-    bookArray.forEach(book => {
+    bookArray.map(book => {
       book.publishDate = new Date(book.publishDate);      
     });
+  }
+
+  onBookRemoved(id: string) {
+    this.books = this.books.filter((b) => b.id !== id);
   }
 }

@@ -20,4 +20,14 @@
     <div class="col">
         {{ book.publishDate | date: 'yyyy/MM/dd' }}
     </div>
+    <div class="col">
+        <button class="btn btn-warning">
+            Edit
+        </button>
+    </div>
+    <div class="col">
+        <button class="btn btn-danger" (click)='removeBook(book.id!)'>
+            Remove
+        </button>
+    </div>
 </div>

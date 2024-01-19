@@ -1,3 +1,27 @@
-<div *ngIf="books.length > 0">
-    <p *ngFor="let book of books"> {{ book.title }} </p>
+<div *ngIf="books" class="container-fluid">
+    <div class="row text-center">
+        <div class="col">
+            <p>ID</p>
+        </div>
+        <div class="col">
+            <p>Title</p>
+        </div>
+        <div class="col">
+            <p>Author</p>
+        </div>
+        <div class="col">
+            <p>Genre</p>
+        </div>
+        <div class="col">
+            <p>Pages</p>
+        </div>
+        <div class="col">
+            <p>Price</p>
+        </div>
+        <div class="col">
+            <p>Publication date</p>
+        </div>
+    </div>
+    <app-book-card *ngFor="let b of books" [book]="b">
+    </app-book-card>
 </div>

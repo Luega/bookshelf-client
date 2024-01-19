@@ -1,0 +1,23 @@
+<div *ngIf="book" class="row">
+    <div class="col">
+        {{ book.id }}
+    </div>
+    <div class="col">
+        {{ book.title }}
+    </div>
+    <div class="col">
+        {{ book.author }}
+    </div>
+    <div class="col">
+        {{ book.genre }}
+    </div>
+    <div class="col">
+        {{ book.pageCount }}
+    </div>
+    <div class="col">
+        {{ book.price }}
+    </div>
+    <div class="col">
+        {{ book.publishDate | date: 'yyyy/MM/dd' }}
+    </div>
+</div>

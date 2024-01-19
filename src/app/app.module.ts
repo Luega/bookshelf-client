@@ -11,8 +11,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { BookDetailsComponent } from './pages/book-details/book-details.component';
 import { Page404Component } from './pages/page404/page404.component';
-import { CardComponent } from './components/card/card.component';
-import { ButtonComponent } from './components/button/button.component';
+import { BookCardComponent } from './components/book-card/book-card.component';
 import { BookAddComponent } from './pages/book-add/book-add.component';
 import { BookEditComponent } from './pages/book-edit/book-edit.component';
 
@@ -27,8 +26,7 @@ import { BookEditComponent } from './pages/book-edit/book-edit.component';
     Page404Component,
     HeaderComponent,
     FooterComponent,
-    CardComponent,
-    ButtonComponent,
+    BookCardComponent,
   ],
   imports: [
     BrowserModule,

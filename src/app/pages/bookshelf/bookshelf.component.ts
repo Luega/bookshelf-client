@@ -8,22 +8,29 @@ import { Book } from 'src/app/models/book.model';
   styleUrls: ['./bookshelf.component.css']
 })
 export class BookshelfComponent implements OnInit {
-  books: Book[] = [];
+  books?: Book[];
 
   constructor(private bookService: BookService) { }
 
   ngOnInit(): void {
-      this.loadBooks();
+      this.loadBooks();  
   }
 
   loadBooks() {
     this.bookService.getBooks().subscribe({
       next: (data) => {
         this.books = data;
+        this.convertStringDatesToObjects(this.books);
       },
       error: (error) => {
         console.log(error);
       }
+    });
+  }
+
+  convertStringDatesToObjects(bookArray: Book[]) {
+    bookArray.forEach(book => {
+      book.publishDate = new Date(book.publishDate);      
     });
   }
 }

@@ -18,16 +18,16 @@ const routes: Routes = [
     component: BookshelfComponent,
   },
   { 
-    path: "books/:id",
-    component: BookDetailsComponent
-  },
-  { 
-    path: "books/add-book",
+    path: "books/add",
     component: BookAddComponent
   },
   { 
-    path: "books/edit-book",
-    component: BookEditComponent
+    path: "books/edit/:id",
+    component: BookAddComponent
+  },
+  { 
+    path: "books/:id",
+    component: BookDetailsComponent
   },
   { 
     path: "quotes",

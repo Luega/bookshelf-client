@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { BookService } from 'src/app/services/book.service';
-import { Book } from 'src/app/models/book.model';
+import { IBook } from 'src/app/models/book/book.interface';
+import { BookService } from 'src/app/services/book/book.service';
 
 @Component({
   selector: 'app-bookshelf',
@@ -8,7 +8,7 @@ import { Book } from 'src/app/models/book.model';
   styleUrls: ['./bookshelf.component.css']
 })
 export class BookshelfComponent implements OnInit {
-  books: Book[] = [];
+  books: IBook[] = [];
 
   constructor(private bookService: BookService) { }
 
@@ -28,7 +28,7 @@ export class BookshelfComponent implements OnInit {
     });
   }
 
-  convertStringDatesToObjects(bookArray: Book[]) {
+  convertStringDatesToObjects(bookArray: IBook[]) {
     bookArray.map(book => {
       book.publishDate = new Date(book.publishDate);      
     });

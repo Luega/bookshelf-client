@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Book } from 'src/app/models/book.model';
-import { BookService } from 'src/app/services/book.service';
+import { IBook } from 'src/app/models/book/book.interface';
+import { BookService } from 'src/app/services/book/book.service';
 
 @Component({
   selector: 'app-book-card',
@@ -8,7 +8,7 @@ import { BookService } from 'src/app/services/book.service';
   styleUrls: ['./book-card.component.css']
 })
 export class BookCardComponent {
-  @Input() book?: Book;
+  @Input() book?: IBook;
   @Output() bookRemoved = new EventEmitter<string>;
 
   constructor(private bookService: BookService) {}

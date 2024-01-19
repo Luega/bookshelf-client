@@ -16,7 +16,7 @@ export class BookshelfComponent implements OnInit {
       this.loadBooks();
   }
 
-  async loadBooks() {
+  loadBooks() {
     this.bookService.getBooks().subscribe({
       next: (data) => {
         this.books = data;

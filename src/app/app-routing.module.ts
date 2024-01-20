@@ -23,7 +23,7 @@ const routes: Routes = [
   },
   { 
     path: "books/edit/:id",
-    component: BookAddComponent
+    component: BookEditComponent
   },
   { 
     path: "books/:id",

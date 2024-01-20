@@ -14,6 +14,7 @@ import { Page404Component } from './pages/page404/page404.component';
 import { BookCardComponent } from './components/book-card/book-card.component';
 import { BookAddComponent } from './pages/book-add/book-add.component';
 import { BookEditComponent } from './pages/book-edit/book-edit.component';
+import { BookFormComponent } from './components/book-form/book-form.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { BookEditComponent } from './pages/book-edit/book-edit.component';
     HeaderComponent,
     FooterComponent,
     BookCardComponent,
+    BookFormComponent,
   ],
   imports: [
     BrowserModule,

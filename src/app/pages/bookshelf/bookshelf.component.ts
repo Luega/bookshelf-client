@@ -20,17 +20,11 @@ export class BookshelfComponent implements OnInit {
     this.bookService.getBooks().subscribe({
       next: (data) => {
         this.books = data;
-        this.convertStringDatesToObjects(this.books);
+        this.bookService.convertStringDatesToObjects(this.books);
       },
       error: (error) => {
         console.log(error);
       }
-    });
-  }
-
-  convertStringDatesToObjects(bookArray: IBook[]) {
-    bookArray.map(book => {
-      book.publishDate = new Date(book.publishDate);      
     });
   }
 

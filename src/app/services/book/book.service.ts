@@ -24,8 +24,18 @@ export class BookService {
     return this.httpClient.post('https://localhost:7156/api/Books', book)
   }
 
+  putBook(id: string, book: IBook) {
+    return this.httpClient.put('https://localhost:7156/api/Books/' + id, book)
+  }
+
   removeBook(id: string) {
     return this.httpClient.delete('https://localhost:7156/api/Books/' + id);
+  }
+
+  convertStringDatesToObjects(bookArray: IBook[]) {
+    bookArray.map(book => {
+      book.publishDate = new Date(book.publishDate);      
+    });
   }
 
   formatDateYYYYMMDD(stringDate: Date) {

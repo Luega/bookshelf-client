@@ -5,6 +5,7 @@ import { BookDetailsComponent } from './pages/book-details/book-details.componen
 import { BookAddComponent } from './pages/book-add/book-add.component';
 import { BookEditComponent } from './pages/book-edit/book-edit.component';
 import { QuotesComponent } from './pages/quotes/quotes.component';
+import { LoginComponent } from './pages/login/login.component';
 import { Page404Component } from './pages/page404/page404.component';
 
 const routes: Routes = [
@@ -32,6 +33,10 @@ const routes: Routes = [
   { 
     path: "quotes",
     component: QuotesComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
   },
   { 
     path: "**",

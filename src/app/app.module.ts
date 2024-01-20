@@ -6,14 +6,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { BookshelfComponent } from './pages/bookshelf/bookshelf.component';
-import { QuotesComponent } from './pages/quotes/quotes.component';
-import { HeaderComponent } from './components/header/header.component';
-import { FooterComponent } from './components/footer/footer.component';
 import { BookDetailsComponent } from './pages/book-details/book-details.component';
-import { Page404Component } from './pages/page404/page404.component';
-import { BookCardComponent } from './components/book-card/book-card.component';
 import { BookAddComponent } from './pages/book-add/book-add.component';
 import { BookEditComponent } from './pages/book-edit/book-edit.component';
+import { QuotesComponent } from './pages/quotes/quotes.component';
+import { LoginComponent } from './pages/login/login.component';
+import { Page404Component } from './pages/page404/page404.component';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { BookCardComponent } from './components/book-card/book-card.component';
 import { BookFormComponent } from './components/book-form/book-form.component';
 
 @NgModule({
@@ -24,6 +25,7 @@ import { BookFormComponent } from './components/book-form/book-form.component';
     BookAddComponent,
     BookEditComponent,
     QuotesComponent,
+    LoginComponent,
     Page404Component,
     HeaderComponent,
     FooterComponent,

@@ -1,0 +1,13 @@
+<div class="container-fluid">
+    <form [formGroup]="loginForm" (submit)="onSubmit()">
+        <div>
+            <label for="username">Username</label>
+            <input type="text" id="username" formControlName="username">
+        </div>
+        <div>
+            <label for="password">Password</label>
+            <input type="text" id="password" formControlName="password">
+        </div>
+        <button type="submit">Login</button>
+    </form>
+</div>

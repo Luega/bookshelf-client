@@ -7,6 +7,7 @@ import { BookEditComponent } from './pages/book-edit/book-edit.component';
 import { QuotesComponent } from './pages/quotes/quotes.component';
 import { LoginComponent } from './pages/login/login.component';
 import { Page404Component } from './pages/page404/page404.component';
+import { authGuard } from './guards/auth/auth.guard';
 
 const routes: Routes = [
   { 
@@ -17,22 +18,26 @@ const routes: Routes = [
   { 
     path: "books",
     component: BookshelfComponent,
-  },
-  { 
-    path: "books/add",
-    component: BookAddComponent
-  },
-  { 
-    path: "books/edit/:id",
-    component: BookEditComponent
-  },
-  { 
-    path: "books/:id",
-    component: BookDetailsComponent
+    canActivate: [authGuard()],
+    children: [
+      {
+        path: "add",
+        component: BookAddComponent
+      },
+      { 
+        path: "edit/:id",
+        component: BookEditComponent
+      },
+      { 
+        path: ":id",
+        component: BookDetailsComponent
+      },
+    ]
   },
   { 
     path: "quotes",
-    component: QuotesComponent
+    component: QuotesComponent,
+    canActivateChild: [authGuard()],
   },
   {
     path: 'login',

@@ -1,11 +1,12 @@
 import { inject } from "@angular/core";
 import { Router } from "@angular/router";
+import { AuthService } from "src/app/services/auth/auth.service";
 
 export const authGuard = () => {
-  return async () => {
+  return () => {
     const router: Router = inject(Router);
-    const isAuth = false;
-    
-    isAuth ? true : router.navigate(['login']); 
+    const authService: AuthService = inject(AuthService);
+
+    authService.isAuth() ? true : router.navigate(['login']); 
   }
 }

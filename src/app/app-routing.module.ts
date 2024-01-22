@@ -12,32 +12,33 @@ import { authGuard } from './guards/auth/auth.guard';
 const routes: Routes = [
   { 
     path: "",
-    redirectTo: "/books",
+    redirectTo: "books",
     pathMatch: 'full'
   },
   { 
     path: "books",
     component: BookshelfComponent,
     canActivate: [authGuard()],
-    children: [
-      {
-        path: "add",
-        component: BookAddComponent
-      },
-      { 
-        path: "edit/:id",
-        component: BookEditComponent
-      },
-      { 
-        path: ":id",
-        component: BookDetailsComponent
-      },
-    ]
+  },
+  {
+    path: "books/add",
+    component: BookAddComponent,
+    canActivate: [authGuard()],
+  },
+  { 
+    path: "books/edit/:id",
+    component: BookEditComponent,
+    canActivate: [authGuard()],
+  },
+  { 
+    path: "books/:id",
+    component: BookDetailsComponent,
+    canActivate: [authGuard()],
   },
   { 
     path: "quotes",
     component: QuotesComponent,
-    canActivateChild: [authGuard()],
+    canActivate: [authGuard()],
   },
   {
     path: 'login',

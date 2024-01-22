@@ -10,6 +10,8 @@ import { IAuthToken } from 'src/app/models/auth/authToken.interface';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+  timeOutMessage?: NodeJS.Timeout;
+  errorMessage?: string;
   loginForm: FormGroup;
 
   constructor(
@@ -30,7 +32,22 @@ export class LoginComponent {
           this.authService.setToken(data);
           this.router.navigate(['/books']);
         },
-        error: (error) => console.log(error),               
+        error: (error) => {
+          console.log(error);
+          if (error.error.status === 401) {
+            clearTimeout(this.timeOutMessage);
+            this.errorMessage = "Wrong Authentication. Try again."
+            this.timeOutMessage = setTimeout(() => {
+              this.errorMessage = '';
+            }, 3000);
+          } else {
+            clearTimeout(this.timeOutMessage);
+            this.errorMessage = "Something went wrong. Try again later."
+            this.timeOutMessage = setTimeout(() => {
+              this.errorMessage = '';
+            }, 3000);
+          }
+        },               
       });
     }
   }

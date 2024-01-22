@@ -19,6 +19,7 @@ import { BookFormComponent } from './components/book-form/book-form.component';
 import { AuthInterceptor } from './interceptors/auth/auth.interceptor';
 import { QuoteCardComponent } from './components/quote-card/quote-card.component';
 import { QuoteFormComponent } from './components/quote-form/quote-form.component';
+import { MessageComponent } from './components/message/message.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { QuoteFormComponent } from './components/quote-form/quote-form.component
     BookFormComponent,
     QuoteCardComponent,
     QuoteFormComponent,
+    MessageComponent,
   ],
   imports: [
     BrowserModule,

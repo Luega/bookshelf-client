@@ -19,7 +19,7 @@ export class BookCardComponent {
         this.bookRemoved.emit(id);
       },
       error: (error) => {
-        console.log(error);
+        this.bookRemoved.emit(error.error.status);
       } 
     });
   }

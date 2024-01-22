@@ -11,9 +11,11 @@ import { BookService } from 'src/app/services/book/book.service';
 })
 
 export class BookFormComponent implements OnInit {
-  bookToEdit?: IBook;
   bookGenresArray: string[] = this.bookService.bookGenreArray;
+  timeOutMessage?: NodeJS.Timeout;
+  errorMessage?: string;
   addForm: FormGroup;
+  bookToEdit?: IBook;
 
   constructor(
     private formBuilder: FormBuilder, 
@@ -46,7 +48,18 @@ export class BookFormComponent implements OnInit {
             publishDate: [this.bookService.formatDateYYYYMMDD(this.bookToEdit.publishDate) , Validators.required],
           });        
         },
-        error: (error) => console.log(error),
+        error: (error) => {
+          console.log(error);
+          if (error.error.status === 401) {
+            this.router.navigate(['login']);
+          } else {
+            clearTimeout(this.timeOutMessage);
+            this.errorMessage = "Something went wrong. Try again later."
+            this.timeOutMessage = setTimeout(() => {
+              this.errorMessage = '';
+            }, 3000);
+          }
+        },
       });
     };
   }
@@ -58,12 +71,34 @@ export class BookFormComponent implements OnInit {
       if (this.bookToEdit) {
         this.bookService.putBook( this.bookToEdit.id!,this.addForm.value).subscribe({
           next: () => this.router.navigate(['/books']),
-          error: (error) => console.log(error),
+          error: (error) => {
+            console.log(error);
+            if (error.error.status === 401) {
+              this.router.navigate(['login']);
+            } else {
+              clearTimeout(this.timeOutMessage);
+              this.errorMessage = "Something went wrong. Try again later."
+              this.timeOutMessage = setTimeout(() => {
+                this.errorMessage = '';
+              }, 3000);
+            }
+          },
         });       
       } else {
         this.bookService.postBook(this.addForm.value).subscribe({
           next: () => this.router.navigate(["/books"]),
-          error: (error) => console.log(error),       
+          error: (error) => {
+            console.log(error);
+            if (error.error.status === 401) {
+              this.router.navigate(['login']);
+            } else {
+              clearTimeout(this.timeOutMessage);
+              this.errorMessage = "Something went wrong. Try again later."
+              this.timeOutMessage = setTimeout(() => {
+                this.errorMessage = '';
+              }, 3000);
+            }
+          },       
         });
       }
     } 

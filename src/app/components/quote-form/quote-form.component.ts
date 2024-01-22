@@ -1,4 +1,3 @@
-import { Router } from '@angular/router';
 import { IQuote } from 'src/app/models/quote/quote.interface';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { QuoteService } from 'src/app/services/quote/quote.service';
@@ -15,7 +14,6 @@ export class QuoteFormComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private router: Router, 
     private quoteService: QuoteService,
   ) {
     this.quoteForm = this.formBuilder.group({

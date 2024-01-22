@@ -1,4 +1,5 @@
 <div class="container-fluid">
+    <app-message *ngIf="errorMessage" [errorMessage]="errorMessage"/>
     <form [formGroup]="loginForm" (submit)="onSubmit()">
         <div>
             <label for="username">Username</label>

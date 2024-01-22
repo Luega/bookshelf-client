@@ -1,4 +1,5 @@
 <div *ngIf="books.length > 0" class="container-fluid  text-center">
+    <app-message *ngIf="errorMessage" [errorMessage]="errorMessage"/>
     <div class="row">
         <div class="col">
             <p>ID</p>
@@ -27,4 +28,7 @@
         </div>
     </div>
     <app-book-card *ngFor="let b of books" [book]="b" (bookRemoved)="onBookRemoved($event)" />
+</div>
+<div *ngIf="books.length === 0 || !books" class="container-fluid">
+    <h2>No Books</h2>
 </div>

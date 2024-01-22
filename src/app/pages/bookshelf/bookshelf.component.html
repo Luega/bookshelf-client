@@ -26,6 +26,5 @@
         <div class="col">
         </div>
     </div>
-    <app-book-card *ngFor="let b of books" [book]="b" (bookRemoved)="onBookRemoved(b.id!)">
-    </app-book-card>
+    <app-book-card *ngFor="let b of books" [book]="b" (bookRemoved)="onBookRemoved($event)" />
 </div>

@@ -17,6 +17,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import { BookCardComponent } from './components/book-card/book-card.component';
 import { BookFormComponent } from './components/book-form/book-form.component';
 import { AuthInterceptor } from './interceptors/auth/auth.interceptor';
+import { QuoteCardComponent } from './components/quote-card/quote-card.component';
+import { QuoteFormComponent } from './components/quote-form/quote-form.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,8 @@ import { AuthInterceptor } from './interceptors/auth/auth.interceptor';
     FooterComponent,
     BookCardComponent,
     BookFormComponent,
+    QuoteCardComponent,
+    QuoteFormComponent,
   ],
   imports: [
     BrowserModule,

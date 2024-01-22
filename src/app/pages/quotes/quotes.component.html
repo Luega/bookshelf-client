@@ -1,1 +1,8 @@
-<p>quotes works!</p>
+<div *ngIf="quotes.length > 0" class="container-fluid">
+    <div class="row">
+        <app-quote-form (createQuote)="onCreateQuote($event)"/>
+    </div>
+    <div *ngFor="let q of quotes" class="row">
+        <app-quote-card [quote]="q"/>
+    </div>
+</div>

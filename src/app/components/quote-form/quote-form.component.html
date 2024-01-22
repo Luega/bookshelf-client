@@ -1,0 +1,11 @@
+<form [formGroup]="quoteForm" (submit)="onSubmit()">
+    <div>
+        <label for="text">Text</label>
+        <textarea id="text" cols="30" rows="10" formControlName="text"></textarea>
+    </div>
+    <div>
+        <label for="author">Author</label>
+        <input type="text" id="author" formControlName="author">
+    </div>
+    <button type="submit">Create</button>
+</form>

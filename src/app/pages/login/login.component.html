@@ -4,11 +4,17 @@
         <div>
             <label for="username">Username</label>
             <input type="text" id="username" formControlName="username">
+            <p *ngIf="!this.loginForm.get('username')?.valid && this.loginForm.get('username')?.touched">
+                Username is required
+            </p>
         </div>
         <div>
             <label for="password">Password</label>
             <input type="text" id="password" formControlName="password">
+            <p *ngIf="!this.loginForm.get('password')?.valid && this.loginForm.get('password')?.touched">
+                Password is required
+            </p>
         </div>
-        <button type="submit">Login</button>
+        <button type="submit" [disabled]="!this.loginForm.valid">Login</button>
     </form>
 </div>

@@ -80,22 +80,26 @@ export class BookFormComponent implements OnInit, OnDestroy {
     if (this.addForm.valid) {
       this.addForm.value.genre = Number(this.addForm.value.genre);
       
-      if (this.bookToEdit) {
-        this.bookService.putBook( this.bookToEdit.id!,this.addForm.value).subscribe({
-          next: () => this.router.navigate(['/books']),
-          error: (error) => {
-            console.log(error);
-            if (error.error.status === 401) {
-              this.router.navigate(['login'], { queryParams: { expired: 'true' } });
-            } else {
-              clearTimeout(this.timeOutMessage);
-              this.errorMessage = "Something went wrong. Try again later."
-              this.timeOutMessage = setTimeout(() => {
-                this.errorMessage = '';
-              }, 3000);
-            }
-          },
-        });       
+      if (this.bookToEdit) {     
+        if (this.addForm.dirty) {        
+          this.bookService.putBook(this.bookToEdit.id!, this.addForm.value).subscribe({
+            next: () => this.router.navigate(['/books']),
+            error: (error) => {
+              console.log(error);
+              if (error.error.status === 401) {
+                this.router.navigate(['login'], { queryParams: { expired: 'true' } });
+              } else {
+                clearTimeout(this.timeOutMessage);
+                this.errorMessage = "Something went wrong. Try again later."
+                this.timeOutMessage = setTimeout(() => {
+                  this.errorMessage = '';
+                }, 3000);
+              }
+            },
+          });       
+        } else {
+          this.router.navigate(['/books']);
+        }        
       } else {
         this.bookService.postBook(this.addForm.value).subscribe({
           next: () => this.router.navigate(["/books"]),

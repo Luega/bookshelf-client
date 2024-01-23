@@ -25,10 +25,14 @@ export class QuoteFormComponent {
   onSubmit() {
     if (this.quoteForm.valid) {
       this.quoteService.postQuotes(this.quoteForm.value).subscribe({
-        next: () => this.createQuote.emit(this.quoteForm.value),
+        next: () => {
+          this.createQuote.emit(this.quoteForm.value);
+          this.quoteForm.reset();
+        },
         error: (error) => {
           console.log(error);
           this.createQuote.emit(error.error.status);
+          this.quoteForm.reset();
         },
       });
     }

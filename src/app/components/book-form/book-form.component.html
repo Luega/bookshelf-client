@@ -2,28 +2,46 @@
     <div>
         <label for="title">Title</label>
         <input type="text" id="title" formControlName="title">
+        <p *ngIf="!this.addForm.get('title')?.value && this.addForm.get('title')?.touched">
+            Title is required
+        </p>
     </div>
     <div>
         <label for="author">Author</label>
         <input type="text" id="author" formControlName="author">
+        <p *ngIf="!this.addForm.get('author')?.value && this.addForm.get('author')?.touched">
+            Author is required
+        </p>
     </div>
     <div>
         <label for="genre">Genre</label>
         <select id="genre" formControlName="genre">
             <option *ngFor="let genre of bookGenresArray; let i = index" value={{i}}>{{genre}}</option>
         </select>
+        <p *ngIf="!this.addForm.get('genre')?.value && this.addForm.get('genre')?.touched">
+            Genre is required
+        </p>
     </div>
     <div>
         <label for="pageCount">Pages</label>
         <input type="number" id="pageCount" formControlName="pageCount">
+        <p *ngIf="!this.addForm.get('pageCount')?.value && this.addForm.get('pageCount')?.touched">
+            Pages is required
+        </p>
     </div>
     <div>
         <label for="price">Price</label>
         <input type="number" id="price" formControlName="price">
+        <p *ngIf="!this.addForm.get('price')?.value && this.addForm.get('price')?.touched">
+            Price is required
+        </p>
     </div>
     <div>
         <label for="publishDate">Publication date</label>
         <input type="date" id="publishDate" formControlName="publishDate">
+        <p *ngIf="!this.addForm.get('publishDate')?.value && this.addForm.get('publishDate')?.touched">
+            Publication date is required
+        </p>
     </div>
-    <button type="submit">{{ this.bookToEdit ? 'Edit' : 'Add' }}</button>
+    <button type="submit" [disabled]="!this.addForm.valid">{{ this.bookToEdit ? 'Edit' : 'Add' }}</button>
 </form>

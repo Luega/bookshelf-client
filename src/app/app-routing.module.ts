@@ -12,8 +12,12 @@ import { authGuard } from './guards/auth/auth.guard';
 const routes: Routes = [
   { 
     path: "",
-    redirectTo: "books",
+    redirectTo: "login",
     pathMatch: 'full'
+  },
+  {
+    path: 'login',
+    component: LoginComponent
   },
   { 
     path: "books",
@@ -39,10 +43,6 @@ const routes: Routes = [
     path: "quotes",
     component: QuotesComponent,
     canActivate: [authGuard()],
-  },
-  {
-    path: 'login',
-    component: LoginComponent
   },
   { 
     path: "**",

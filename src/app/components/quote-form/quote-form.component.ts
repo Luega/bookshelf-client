@@ -26,7 +26,10 @@ export class QuoteFormComponent {
     if (this.quoteForm.valid) {
       this.quoteService.postQuotes(this.quoteForm.value).subscribe({
         next: () => this.createQuote.emit(this.quoteForm.value),
-        error: (error) => console.log(error),
+        error: (error) => {
+          console.log(error);
+          this.createQuote.emit(error.error.status);
+        },
       });
     }
   }

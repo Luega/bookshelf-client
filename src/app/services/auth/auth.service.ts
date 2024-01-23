@@ -30,7 +30,7 @@ export class AuthService {
     return this.cookieService.get("jwt") ? true : false;
   }
 
-  setToken(authToken: IAuthToken) {
+  setCookie(authToken: IAuthToken) {
     const {token, expDate} = authToken;
     this.cookieService.set('jwt', token, new Date(expDate));
   }

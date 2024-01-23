@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IBook } from 'src/app/models/book/book.interface';
@@ -10,7 +10,7 @@ import { BookService } from 'src/app/services/book/book.service';
   styleUrls: ['./book-form.component.css']
 })
 
-export class BookFormComponent implements OnInit {
+export class BookFormComponent implements OnInit, OnDestroy {
   bookGenresArray: string[] = this.bookService.bookGenreArray;
   timeOutMessage?: NodeJS.Timeout;
   errorMessage?: string;
@@ -51,7 +51,13 @@ export class BookFormComponent implements OnInit {
         error: (error) => {
           console.log(error);
           if (error.error.status === 401) {
-            this.router.navigate(['login']);
+            this.router.navigate(['login'], { queryParams: { expired: 'true' } });
+          } else if (error.error.status === 404) {
+            clearTimeout(this.timeOutMessage);
+            this.errorMessage = "Book not found."
+            this.timeOutMessage = setTimeout(() => {
+              this.errorMessage = '';
+            }, 3000);
           } else {
             clearTimeout(this.timeOutMessage);
             this.errorMessage = "Something went wrong. Try again later."
@@ -64,6 +70,12 @@ export class BookFormComponent implements OnInit {
     };
   }
 
+  ngOnDestroy() {
+    if (this.timeOutMessage) {
+      clearTimeout(this.timeOutMessage);
+    }
+  }
+
   onSubmit() {
     if (this.addForm.valid) {
       this.addForm.value.genre = Number(this.addForm.value.genre);
@@ -74,7 +86,7 @@ export class BookFormComponent implements OnInit {
           error: (error) => {
             console.log(error);
             if (error.error.status === 401) {
-              this.router.navigate(['login']);
+              this.router.navigate(['login'], { queryParams: { expired: 'true' } });
             } else {
               clearTimeout(this.timeOutMessage);
               this.errorMessage = "Something went wrong. Try again later."

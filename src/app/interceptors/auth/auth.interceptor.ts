@@ -27,7 +27,7 @@ export class AuthInterceptor implements HttpInterceptor {
         return next.handle(authReq);
       }
 
-      this.router.navigate(['/login']);
+      this.router.navigate(['/login'], { queryParams: { expired: 'true' } });
       return EMPTY;
     }
     

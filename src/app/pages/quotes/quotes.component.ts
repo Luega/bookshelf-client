@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { IQuote } from 'src/app/models/quote/quote.interface';
 import { QuoteService } from 'src/app/services/quote/quote.service';
 
@@ -7,24 +8,56 @@ import { QuoteService } from 'src/app/services/quote/quote.service';
   templateUrl: './quotes.component.html',
   styleUrls: ['./quotes.component.css']
 })
-export class QuotesComponent implements OnInit {
+export class QuotesComponent implements OnInit, OnDestroy {
   quotes: IQuote[] = []
+  timeOutMessage?: NodeJS.Timeout;
+  errorMessage?: string;
 
-  constructor(private quoteService: QuoteService) {}
+  constructor(
+    private quoteService: QuoteService,
+    private router: Router
+    ) {}
 
   ngOnInit(): void {
     this.loadQuotes();
   }
 
+  ngOnDestroy() {
+    if (this.timeOutMessage) {
+      clearTimeout(this.timeOutMessage);
+    }
+  }
+
   loadQuotes() {
     this.quoteService.getQuotes().subscribe({
       next: (data: IQuote[]) => this.quotes = data,
-      error: (error) => console.log(error),      
+      error: (error) => {
+        console.log(error);
+        if (error.error.status === 401) {
+          this.router.navigate(['login'], { queryParams: { expired: 'true' } });
+        } else {
+          clearTimeout(this.timeOutMessage);
+          this.errorMessage = "Something went wrong. Try again later."
+          this.timeOutMessage = setTimeout(() => {
+            this.errorMessage = '';
+          }, 3000);
+        }
+      },      
     });
   }
 
-  onCreateQuote(newQuote: IQuote) {
-    this.quotes.pop();
-    this.quotes.unshift(newQuote);
+  onCreateQuote(event: IQuote | number) {
+    if (typeof(event) === "object") {      
+      this.quotes.pop();
+      this.quotes.unshift(event);
+    } else if ( event === 401) {
+      this.router.navigate(["login"], { queryParams: { expired: 'true' } });
+    } else {
+      clearTimeout(this.timeOutMessage);
+      this.errorMessage = "Something went wrong. Try again later."
+      this.timeOutMessage = setTimeout(() => {
+      this.errorMessage = '';
+      }, 3000);
+    }
   }
 }

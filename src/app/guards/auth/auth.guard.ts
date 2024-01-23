@@ -7,6 +7,6 @@ export const authGuard = () => {
     const router: Router = inject(Router);
     const authService: AuthService = inject(AuthService);
 
-    authService.isAuth() ? true : router.navigate(['login']); 
+    authService.isAuth() ? true : router.navigate(['login'], { queryParams: { expired: 'true' } }); 
   }
 }

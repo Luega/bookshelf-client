@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IBook } from 'src/app/models/book/book.interface';
 import { BookService } from 'src/app/services/book/book.service';
@@ -8,7 +8,7 @@ import { BookService } from 'src/app/services/book/book.service';
   templateUrl: './bookshelf.component.html',
   styleUrls: ['./bookshelf.component.css']
 })
-export class BookshelfComponent implements OnInit {
+export class BookshelfComponent implements OnInit, OnDestroy {
   timeOutMessage?: NodeJS.Timeout;
   errorMessage?: string;
   books: IBook[] = [];
@@ -22,6 +22,12 @@ export class BookshelfComponent implements OnInit {
       this.loadBooks();  
   }
 
+  ngOnDestroy() {
+    if (this.timeOutMessage) {
+      clearTimeout(this.timeOutMessage);
+    }
+  }
+
   loadBooks() {
     this.bookService.getBooks().subscribe({
       next: (data) => {
@@ -30,6 +36,15 @@ export class BookshelfComponent implements OnInit {
       },
       error: (error) => {
         console.log(error);
+        if (error.error.status === 401) {
+          this.router.navigate(['login'], { queryParams: { expired: 'true' } });
+        } else {
+          clearTimeout(this.timeOutMessage);
+          this.errorMessage = "Something went wrong. Try again later."
+          this.timeOutMessage = setTimeout(() => {
+            this.errorMessage = '';
+          }, 3000);
+        }
       }
     });
   }
@@ -37,8 +52,14 @@ export class BookshelfComponent implements OnInit {
   onBookRemoved(event: string | number) {
     if (typeof(event) === "string") {
       this.books = this.books.filter((b) => b.id !== event)
+    } else if (event === 404) {
+      clearTimeout(this.timeOutMessage);
+      this.errorMessage = "Book not found."
+      this.timeOutMessage = setTimeout(() => {
+        this.errorMessage = '';
+      }, 3000);
     } else if (event === 401) {
-      this.router.navigate(['login']);
+      this.router.navigate(['login'], { queryParams: { expired: 'true' } });
     } else {
       clearTimeout(this.timeOutMessage);
       this.errorMessage = "Something went wrong. Try again later."

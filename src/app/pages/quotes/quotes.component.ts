@@ -1,6 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MessageType } from 'src/app/models/message/message-type.enum';
 import { IQuote } from 'src/app/models/quote/quote.interface';
+import { MessageService } from 'src/app/services/message/message.service';
 import { QuoteService } from 'src/app/services/quote/quote.service';
 
 @Component({
@@ -10,12 +12,11 @@ import { QuoteService } from 'src/app/services/quote/quote.service';
 })
 export class QuotesComponent implements OnInit, OnDestroy {
   quotes: IQuote[] = []
-  timeOutMessage?: NodeJS.Timeout;
-  errorMessage?: string;
 
   constructor(
     private quoteService: QuoteService,
-    private router: Router
+    private router: Router,
+    public messageService: MessageService,
     ) {}
 
   ngOnInit(): void {
@@ -23,8 +24,8 @@ export class QuotesComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.timeOutMessage) {
-      clearTimeout(this.timeOutMessage);
+    if (this.messageService.timeOutMessage) {
+      clearTimeout(this.messageService.timeOutMessage);
     }
   }
 
@@ -32,15 +33,15 @@ export class QuotesComponent implements OnInit, OnDestroy {
     this.quoteService.getQuotes().subscribe({
       next: (data: IQuote[]) => this.quotes = data,
       error: (error) => {
-        console.log(error);
         if (error.error.status === 401) {
           this.router.navigate(['login'], { queryParams: { expired: 'true' } });
         } else {
-          clearTimeout(this.timeOutMessage);
-          this.errorMessage = "Something went wrong. Try again later."
-          this.timeOutMessage = setTimeout(() => {
-            this.errorMessage = '';
-          }, 3000);
+          this.messageService.setMessageTimeOut(
+            {
+              text: "Something went wrong. Try again later.",
+              type: MessageType.error
+            }
+          );
         }
       },      
     });
@@ -50,14 +51,21 @@ export class QuotesComponent implements OnInit, OnDestroy {
     if (typeof(event) === "object") {      
       this.quotes.pop();
       this.quotes.unshift(event);
+      this.messageService.setMessageTimeOut(
+        {
+          text: "New quote created.",
+          type: MessageType.success
+        }
+      );
     } else if ( event === 401) {
       this.router.navigate(["login"], { queryParams: { expired: 'true' } });
     } else {
-      clearTimeout(this.timeOutMessage);
-      this.errorMessage = "Something went wrong. Try again later."
-      this.timeOutMessage = setTimeout(() => {
-      this.errorMessage = '';
-      }, 3000);
+      this.messageService.setMessageTimeOut(
+        {
+          text: "Something went wrong. Try again later.",
+          type: MessageType.error
+        }
+      );
     }
   }
 }

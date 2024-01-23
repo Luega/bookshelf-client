@@ -10,10 +10,8 @@ import { BookService } from 'src/app/services/book/book.service';
   styleUrls: ['./book-form.component.css']
 })
 
-export class BookFormComponent implements OnInit, OnDestroy {
+export class BookFormComponent implements OnInit {
   bookGenresArray: string[] = this.bookService.bookGenreArray;
-  timeOutMessage?: NodeJS.Timeout;
-  errorMessage?: string;
   addForm: FormGroup;
   bookToEdit?: IBook;
 
@@ -21,7 +19,7 @@ export class BookFormComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder, 
     private bookService: BookService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
     ) {
       this.addForm = this.formBuilder.group({
         title: [null, Validators.required],
@@ -49,31 +47,16 @@ export class BookFormComponent implements OnInit, OnDestroy {
           });        
         },
         error: (error) => {
-          console.log(error);
           if (error.error.status === 401) {
             this.router.navigate(['login'], { queryParams: { expired: 'true' } });
           } else if (error.error.status === 404) {
-            clearTimeout(this.timeOutMessage);
-            this.errorMessage = "Book not found."
-            this.timeOutMessage = setTimeout(() => {
-              this.errorMessage = '';
-            }, 3000);
+            this.router.navigate(['books'], { queryParams: { found: 'false' } });
           } else {
-            clearTimeout(this.timeOutMessage);
-            this.errorMessage = "Something went wrong. Try again later."
-            this.timeOutMessage = setTimeout(() => {
-              this.errorMessage = '';
-            }, 3000);
+            this.router.navigate(['books'], { queryParams: { error: 'true' } });
           }
         },
       });
     };
-  }
-
-  ngOnDestroy() {
-    if (this.timeOutMessage) {
-      clearTimeout(this.timeOutMessage);
-    }
   }
 
   onSubmit() {
@@ -83,36 +66,26 @@ export class BookFormComponent implements OnInit, OnDestroy {
       if (this.bookToEdit) {     
         if (this.addForm.dirty) {        
           this.bookService.putBook(this.bookToEdit.id!, this.addForm.value).subscribe({
-            next: () => this.router.navigate(['/books']),
+            next: () => this.router.navigate(['/books'], { queryParams: { edit: 'true' } }),
             error: (error) => {
-              console.log(error);
               if (error.error.status === 401) {
                 this.router.navigate(['login'], { queryParams: { expired: 'true' } });
               } else {
-                clearTimeout(this.timeOutMessage);
-                this.errorMessage = "Something went wrong. Try again later."
-                this.timeOutMessage = setTimeout(() => {
-                  this.errorMessage = '';
-                }, 3000);
+                this.router.navigate(['books'], { queryParams: { error: 'true' } });
               }
             },
           });       
         } else {
-          this.router.navigate(['/books']);
+          this.router.navigate(['/books'], { queryParams: { edit: 'true' } });
         }        
       } else {
         this.bookService.postBook(this.addForm.value).subscribe({
-          next: () => this.router.navigate(["/books"]),
+          next: () => this.router.navigate(["/books"], { queryParams: { add: 'true' } }),
           error: (error) => {
-            console.log(error);
             if (error.error.status === 401) {
-              this.router.navigate(['login']);
+              this.router.navigate(['login'], { queryParams: { expired: 'true' } });
             } else {
-              clearTimeout(this.timeOutMessage);
-              this.errorMessage = "Something went wrong. Try again later."
-              this.timeOutMessage = setTimeout(() => {
-                this.errorMessage = '';
-              }, 3000);
+              this.router.navigate(['books'], { queryParams: { error: 'true' } });
             }
           },       
         });

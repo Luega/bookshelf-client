@@ -1,6 +1,6 @@
 <div *ngIf="quotes.length > 0" class="container-fluid">
-    <div class="row" *ngIf="errorMessage">
-        <app-message [errorMessage]="errorMessage"/>
+    <div class="row" *ngIf="this.messageService.message">
+        <app-message [message]="this.messageService.message"/>
     </div>
     <div class="row">
         <app-quote-form (createQuote)="onCreateQuote($event)"/>
@@ -11,8 +11,8 @@
 </div>
 
 <div *ngIf="quotes.length === 0 || !quotes" class="container-fluid">
-    <div class="row" *ngIf="errorMessage">
-        <app-message [errorMessage]="errorMessage"/>
+    <div class="row" *ngIf="this.messageService.message">
+        <app-message [message]="this.messageService.message"/>
     </div>
     <div class="row">
         <h2>No Quotes</h2>

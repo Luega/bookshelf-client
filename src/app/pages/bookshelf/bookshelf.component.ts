@@ -1,7 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IBook } from 'src/app/models/book/book.interface';
+import { MessageType } from 'src/app/models/message/message-type.enum';
 import { BookService } from 'src/app/services/book/book.service';
+import { MessageService } from 'src/app/services/message/message.service';
 
 @Component({
   selector: 'app-bookshelf',
@@ -9,22 +11,55 @@ import { BookService } from 'src/app/services/book/book.service';
   styleUrls: ['./bookshelf.component.css']
 })
 export class BookshelfComponent implements OnInit, OnDestroy {
-  timeOutMessage?: NodeJS.Timeout;
-  errorMessage?: string;
   books: IBook[] = [];
 
   constructor(
     private bookService: BookService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute,
+    public messageService: MessageService,
     ) { }
 
   ngOnInit(): void {
-      this.loadBooks();  
+    this.loadBooks(); 
+    
+    if (this.route.snapshot.queryParams['edit'] === "true") {
+      this.messageService.setMessageTimeOut(
+        {
+          text: "Book updated.",
+          type: MessageType.success
+        }
+      );
+    }
+    if (this.route.snapshot.queryParams['add'] === "true") {
+      this.messageService.setMessageTimeOut(
+        {
+          text: "Book added.",
+          type: MessageType.success
+        }
+      );
+    }
+    if (this.route.snapshot.queryParams['found'] === "false") {
+      this.messageService.setMessageTimeOut(
+        {
+          text: "Book not found.",
+          type: MessageType.error
+        }
+      );
+    }
+    if (this.route.snapshot.queryParams['error'] === "true") {
+      this.messageService.setMessageTimeOut(
+        {
+          text: "Something went wrong. Try again later.",
+          type: MessageType.error
+        }
+      );
+    }
   }
 
   ngOnDestroy() {
-    if (this.timeOutMessage) {
-      clearTimeout(this.timeOutMessage);
+    if (this.messageService.timeOutMessage) {
+      clearTimeout(this.messageService.timeOutMessage);
     }
   }
 
@@ -35,15 +70,15 @@ export class BookshelfComponent implements OnInit, OnDestroy {
         this.bookService.convertStringDatesToObjects(this.books);
       },
       error: (error) => {
-        console.log(error);
         if (error.error.status === 401) {
           this.router.navigate(['login'], { queryParams: { expired: 'true' } });
         } else {
-          clearTimeout(this.timeOutMessage);
-          this.errorMessage = "Something went wrong. Try again later."
-          this.timeOutMessage = setTimeout(() => {
-            this.errorMessage = '';
-          }, 3000);
+          this.messageService.setMessageTimeOut(
+            {
+              text: "Something went wrong. Try again later.",
+              type: MessageType.error
+            }
+          );
         }
       }
     });
@@ -51,21 +86,29 @@ export class BookshelfComponent implements OnInit, OnDestroy {
 
   onBookRemoved(event: string | number) {
     if (typeof(event) === "string") {
-      this.books = this.books.filter((b) => b.id !== event)
+      this.books = this.books.filter((b) => b.id !== event);
+      this.messageService.setMessageTimeOut(
+        {
+          text: "Book removed.",
+          type: MessageType.success
+        }
+      );
     } else if (event === 404) {
-      clearTimeout(this.timeOutMessage);
-      this.errorMessage = "Book not found."
-      this.timeOutMessage = setTimeout(() => {
-        this.errorMessage = '';
-      }, 3000);
+      this.messageService.setMessageTimeOut(
+        {
+          text: "Book not found.",
+          type: MessageType.error
+        }
+      );
     } else if (event === 401) {
       this.router.navigate(['login'], { queryParams: { expired: 'true' } });
     } else {
-      clearTimeout(this.timeOutMessage);
-      this.errorMessage = "Something went wrong. Try again later."
-      this.timeOutMessage = setTimeout(() => {
-        this.errorMessage = '';
-      }, 3000);
+      this.messageService.setMessageTimeOut(
+        {
+          text: "Something went wrong. Try again later.",
+          type: MessageType.error
+        }
+      );
     }
   }
 }

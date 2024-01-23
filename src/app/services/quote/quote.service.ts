@@ -11,10 +11,10 @@ export class QuoteService {
   constructor(private httpClient: HttpClient) { }
 
   getQuotes(): Observable<IQuote[]> {
-    return this.httpClient.get<IQuote[]>("https://localhost:7156/api/Quote");
+    return this.httpClient.get<IQuote[]>("https://localhost:7156/api/Quotes");
   }
 
   postQuotes(quote: IQuote) {
-    return this.httpClient.post("https://localhost:7156/api/Quote", quote);
+    return this.httpClient.post("https://localhost:7156/api/Quotes", quote);
   }
 }

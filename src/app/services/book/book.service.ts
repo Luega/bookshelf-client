@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IBook } from '../../models/book/book.interface';
 import { BookGenre } from 'src/app/models/book/book-genre.enum';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
@@ -13,23 +14,23 @@ export class BookService {
   constructor(private httpClient: HttpClient) { }
 
   getBooks(): Observable<IBook[]> {
-    return this.httpClient.get<IBook[]>('https://localhost:7156/api/Books');
+    return this.httpClient.get<IBook[]>(environment.API_URL + "Books");
   }
 
   getBook(id: string): Observable<IBook> {
-    return this.httpClient.get<IBook>('https://localhost:7156/api/Books/' + id);
+    return this.httpClient.get<IBook>(environment.API_URL + "Books/" + id);
   }
 
   postBook(book: IBook) {
-    return this.httpClient.post('https://localhost:7156/api/Books', book)
+    return this.httpClient.post(environment.API_URL + "Books", book)
   }
 
   putBook(id: string, book: IBook) {
-    return this.httpClient.put('https://localhost:7156/api/Books/' + id, book)
+    return this.httpClient.put(environment.API_URL + "Books/" + id, book)
   }
 
   removeBook(id: string) {
-    return this.httpClient.delete('https://localhost:7156/api/Books/' + id);
+    return this.httpClient.delete(environment.API_URL + "Books/" + id);
   }
 
   convertStringDatesToObjects(bookArray: IBook[]) {

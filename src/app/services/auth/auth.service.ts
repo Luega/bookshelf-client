@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { ILoginCredentials } from 'src/app/models/auth/login-credentials.interface';
 import { IAuthToken } from 'src/app/models/auth/authToken.interface';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class AuthService {
     ) { }
 
   logIn(authCredentials: ILoginCredentials): Observable<IAuthToken> { 
-    return this.httpClient.post<IAuthToken>('https://localhost:7156/api/login', authCredentials);
+    return this.httpClient.post<IAuthToken>(environment.API_URL + "login", authCredentials);
   }
 
   logOut() {

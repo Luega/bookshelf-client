@@ -19,7 +19,7 @@ export class AuthService {
     ) { }
 
   logIn(authCredentials: ILoginCredentials): Observable<IAuthToken> { 
-    return this.httpClient.post<IAuthToken>(environment.API_URL + "login", authCredentials);
+    return this.httpClient.post<IAuthToken>(environment.API_URL + "api/login", authCredentials);
   }
 
   logOut() {

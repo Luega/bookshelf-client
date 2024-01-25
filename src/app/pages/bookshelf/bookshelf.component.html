@@ -2,6 +2,9 @@
     <div class="row" *ngIf="this.messageService.message">
         <app-message [message]="this.messageService.message"/>
     </div>
+    <a class="btn btn-primary" role="button" [routerLink]="['/books/add']">
+        Add
+    </a>
     <div class="row">
         <div class="col">
             <p>ID</p>

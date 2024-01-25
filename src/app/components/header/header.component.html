@@ -1,4 +1,4 @@
-<header class="container-fluid">
+<header class="header container-fluid" [ngClass]="[darkMode.isActive ? darkMode.cssClass : '']">
   <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
       <a class="navbar-brand" [routerLink]="['/books']"><i class="fa-solid fa-book"></i></a>
@@ -14,10 +14,10 @@
             <a class="nav-link" [routerLink]="['/quotes']">MyQuotes</a>
           </li>
         </ul>
-        <a class="btn btn-primary" role="button" [routerLink]="['/books/add']">
-          Add
-        </a>
       </div>
     </div>
+    <button (click)="this.darkMode.onToggleDarkMode()">
+      DarkMode
+    </button>
   </nav>
 </header>

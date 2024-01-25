@@ -5,6 +5,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { IAuthToken } from 'src/app/models/auth/authToken.interface';
 import { MessageService } from 'src/app/services/message/message.service';
 import { MessageType } from 'src/app/models/message/message-type.enum';
+import { DarkModeService } from 'src/app/services/dark-mode/dark-mode.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     private router: Router,
     private route: ActivatedRoute,
-    public messageService: MessageService
+    public messageService: MessageService,
+    public darkMode: DarkModeService
     ) {
     this.loginForm = this.formBuilder.group({
       username: [null, Validators.required],

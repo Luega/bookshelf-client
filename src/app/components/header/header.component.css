@@ -1,0 +1,7 @@
+.header {
+    background-color: var(--lightmode-primary-color);
+}
+
+.header.dark-mode {
+    background-color: var(--darkmode-primary-color);
+}

@@ -1,21 +1,21 @@
 <div class="container-fluid">
-    <app-message *ngIf="this.messageService.message" [message]="this.messageService.message"/>
+    <app-message *ngIf="messageService.message" [message]="messageService.message"/>
 
-    <form [formGroup]="loginForm" (submit)="onSubmit()">
+    <form [formGroup]="loginForm" (submit)="onSubmit()" [ngClass]="[darkMode.isActive ? darkMode.cssClass : '']"> 
         <div>
             <label for="username">Username</label>
             <input type="text" id="username" formControlName="username">
-            <p *ngIf="!this.loginForm.get('username')?.valid && this.loginForm.get('username')?.touched">
+            <p *ngIf="!loginForm.get('username')?.valid && loginForm.get('username')?.touched">
                 Username is required
             </p>
         </div>
         <div>
             <label for="password">Password</label>
             <input type="text" id="password" formControlName="password">
-            <p *ngIf="!this.loginForm.get('password')?.valid && this.loginForm.get('password')?.touched">
+            <p *ngIf="!loginForm.get('password')?.valid && loginForm.get('password')?.touched">
                 Password is required
             </p>
         </div>
-        <button type="submit" [disabled]="!this.loginForm.valid">Login</button>
+        <button type="submit" [disabled]="!loginForm.valid">Login</button>
     </form>
 </div>

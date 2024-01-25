@@ -1,1 +1,6 @@
-
+:root {
+    --lightmode-primary-color: red;
+    --lightmode-secondary-color: orange;
+    --darkmode-primary-color: blue;
+    --darkmode-secondary-color: black;
+}

@@ -1,45 +1,14 @@
-<div *ngIf="books.length > 0" class="container-fluid  text-center">
-    <div class="row" *ngIf="this.messageService.message">
-        <app-message [message]="this.messageService.message"/>
-    </div>
-    <a class="btn btn-primary" role="button" [routerLink]="['/books/add']">
+<app-message *ngIf="messageService.message" [message]="messageService.message"/>
+
+<div *ngIf="books.length > 0" class="w-75 m-auto d-flex flex-column gap-4">
+    <button class="btn btn-primary" role="button" [routerLink]="['/books/add']">
         Add
-    </a>
-    <div class="row">
-        <div class="col">
-            <p>ID</p>
-        </div>
-        <div class="col">
-            <p>Title</p>
-        </div>
-        <div class="col">
-            <p>Author</p>
-        </div>
-        <div class="col">
-            <p>Genre</p>
-        </div>
-        <div class="col">
-            <p>Pages</p>
-        </div>
-        <div class="col">
-            <p>Price</p>
-        </div>
-        <div class="col">
-            <p>Publication date</p>
-        </div>
-        <div class="col">
-        </div>
-        <div class="col">
-        </div>
-    </div>
+    </button>
     <app-book-card *ngFor="let b of books" [book]="b" (bookRemoved)="onBookRemoved($event)" />
 </div>
 
-<div *ngIf="books.length === 0 || !books" class="container-fluid">
-    <div class="row" *ngIf="this.messageService.message">
-        <app-message [message]="this.messageService.message"/>
-    </div>
+<!-- <div *ngIf="books.length === 0 || !books" class="container-fluid">
     <div class="row">
         <h2>No Books</h2>
     </div>
-</div>
+</div> -->

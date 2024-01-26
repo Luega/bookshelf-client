@@ -6,16 +6,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { BookshelfComponent } from './pages/bookshelf/bookshelf.component';
-import { BookDetailsComponent } from './pages/book-details/book-details.component';
-import { BookAddComponent } from './pages/book-add/book-add.component';
-import { BookEditComponent } from './pages/book-edit/book-edit.component';
 import { QuotesComponent } from './pages/quotes/quotes.component';
 import { LoginComponent } from './pages/login/login.component';
 import { Page404Component } from './pages/page404/page404.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { BookCardComponent } from './components/book-card/book-card.component';
-import { BookFormComponent } from './components/book-form/book-form.component';
+import { BookFormComponent } from './pages/book-form/book-form.component';
 import { AuthInterceptor } from './interceptors/auth/auth.interceptor';
 import { QuoteCardComponent } from './components/quote-card/quote-card.component';
 import { QuoteFormComponent } from './components/quote-form/quote-form.component';
@@ -25,9 +22,6 @@ import { MessageComponent } from './components/message/message.component';
   declarations: [
     AppComponent,
     BookshelfComponent,
-    BookDetailsComponent,
-    BookAddComponent,
-    BookEditComponent,
     QuotesComponent,
     LoginComponent,
     Page404Component,

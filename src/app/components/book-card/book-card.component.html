@@ -1,31 +1,40 @@
-<div *ngIf="book" class="row">
-    <div class="col">
-        {{ book.id }}
+<div *ngIf="book">
+    <div class="container-fluid">
+        <ul class="row list-group list-group-horizontal-xl">
+            <li class="col list-group-item">
+                <span class="card__label">Id: </span>
+                <span>{{ book.id }}</span>
+            </li>
+            <li class="col list-group-item">
+                <span class="card__label">Title: </span>
+                <span>{{ book.title }}</span>
+            </li>
+            <li class="col list-group-item">
+                <span class="card__label">Author: </span>
+                <span>{{ book.author }}</span>
+            </li>
+            <li class="col list-group-item">
+                <span class="card__label">Genre: </span>
+                <span>{{ book.genre }}</span>
+            </li>
+            <li class="col list-group-item">
+                <span class="card__label">Pages: </span>
+                <span>{{ book.pageCount }}</span>
+            </li>
+            <li class="col list-group-item">
+                <span class="card__label">Price: </span>
+                <span>{{ book.price }}</span>
+            </li>
+            <li class="col list-group-item">
+                <span class="card__label">Publication date: </span>
+                <span>{{ book.publishDate | date: 'yyyy/MM/dd' }}</span>
+            </li>
+        </ul>
     </div>
-    <div class="col">
-        {{ book.title }}
-    </div>
-    <div class="col">
-        {{ book.author }}
-    </div>
-    <div class="col">
-        {{ book.genre }}
-    </div>
-    <div class="col">
-        {{ book.pageCount }}
-    </div>
-    <div class="col">
-        {{ book.price }}
-    </div>
-    <div class="col">
-        {{ book.publishDate | date: 'yyyy/MM/dd' }}
-    </div>
-    <div class="col">
-        <a class="btn btn-warning" role="button" [routerLink]="['/books/edit/', book.id]">
+    <div class="my-2 d-flex justify-content-center gap-4">
+        <a class="btn btn-warning" role="button" routerLink="/books/edit/{{book.id}}">
             Edit
         </a>
-    </div>
-    <div class="col">
         <button class="btn btn-danger" (click)="removeBook(book.id!)">
             Remove
         </button>

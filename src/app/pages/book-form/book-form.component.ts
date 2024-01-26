@@ -12,7 +12,7 @@ import { BookService } from 'src/app/services/book/book.service';
 
 export class BookFormComponent implements OnInit {
   bookGenresArray: string[] = this.bookService.bookGenreArray;
-  addForm: FormGroup;
+  bookForm: FormGroup;
   bookToEdit?: IBook;
 
   constructor(
@@ -21,7 +21,7 @@ export class BookFormComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     ) {
-      this.addForm = this.formBuilder.group({
+      this.bookForm = this.formBuilder.group({
         title: [null, Validators.required],
         author: [null, Validators.required],
         genre: [null, Validators.required],
@@ -37,7 +37,7 @@ export class BookFormComponent implements OnInit {
       this.bookService.getBook(bookId).subscribe({
         next: (data) => {     
           this.bookToEdit = data;
-          this.addForm = this.formBuilder.group({
+          this.bookForm = this.formBuilder.group({
             title: [this.bookToEdit.title, Validators.required],
             author: [this.bookToEdit.author, Validators.required],
             genre: [this.bookToEdit.genre, Validators.required],
@@ -60,12 +60,12 @@ export class BookFormComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.addForm.valid) {
-      this.addForm.value.genre = Number(this.addForm.value.genre);
+    if (this.bookForm.valid) {
+      this.bookForm.value.genre = Number(this.bookForm.value.genre);
       
       if (this.bookToEdit) {     
-        if (this.addForm.dirty) {        
-          this.bookService.putBook(this.bookToEdit.id!, this.addForm.value).subscribe({
+        if (this.bookForm.dirty) {        
+          this.bookService.putBook(this.bookToEdit.id!, this.bookForm.value).subscribe({
             next: () => this.router.navigate(['/books'], { queryParams: { edit: 'true' } }),
             error: (error) => {
               if (error.error.status === 401) {
@@ -79,7 +79,7 @@ export class BookFormComponent implements OnInit {
           this.router.navigate(['/books'], { queryParams: { edit: 'true' } });
         }        
       } else {
-        this.bookService.postBook(this.addForm.value).subscribe({
+        this.bookService.postBook(this.bookForm.value).subscribe({
           next: () => this.router.navigate(["/books"], { queryParams: { add: 'true' } }),
           error: (error) => {
             if (error.error.status === 401) {

@@ -1,6 +1,10 @@
 :root {
-    --lightmode-primary-color: red;
+    /* --lightmode-primary-color: red;
     --lightmode-secondary-color: orange;
     --darkmode-primary-color: blue;
-    --darkmode-secondary-color: black;
+    --darkmode-secondary-color: black; */
+
+    --min-height-header: 80px;
+    --min-height-main: calc(100vh - (var(--min-height-header) + var(--min-height-footer)));
+    --min-height-footer: 80px;
 }

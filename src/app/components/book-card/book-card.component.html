@@ -1,42 +1,48 @@
-<div *ngIf="book">
-    <div class="container-fluid">
-        <ul class="row list-group list-group-horizontal-xl">
-            <li class="col list-group-item">
-                <span class="card__label">Id: </span>
-                <span>{{ book.id }}</span>
-            </li>
-            <li class="col list-group-item">
-                <span class="card__label">Title: </span>
-                <span>{{ book.title }}</span>
-            </li>
-            <li class="col list-group-item">
-                <span class="card__label">Author: </span>
-                <span>{{ book.author }}</span>
-            </li>
-            <li class="col list-group-item">
-                <span class="card__label">Genre: </span>
-                <span>{{ book.genre }}</span>
-            </li>
-            <li class="col list-group-item">
-                <span class="card__label">Pages: </span>
-                <span>{{ book.pageCount }}</span>
-            </li>
-            <li class="col list-group-item">
-                <span class="card__label">Price: </span>
-                <span>{{ book.price }}</span>
-            </li>
-            <li class="col list-group-item">
-                <span class="card__label">Publication date: </span>
-                <span>{{ book.publishDate | date: 'yyyy/MM/dd' }}</span>
-            </li>
-        </ul>
-    </div>
-    <div class="my-2 d-flex justify-content-center gap-4">
+<div *ngIf="book" class="mt-5">
+    <ul class="row list-group list-group-horizontal-xl">
+        <li class="col list-group-item">
+            <span class="card__label">Id: </span>
+            <span>{{ book.id }}</span>
+        </li>
+        <li class="col list-group-item">
+            <span class="card__label">Title: </span>
+            <span>{{ book.title }}</span>
+        </li>
+        <li class="col list-group-item">
+            <span class="card__label">Author: </span>
+            <span>{{ book.author }}</span>
+        </li>
+        <li class="col list-group-item">
+            <span class="card__label">Genre: </span>
+            <span>{{ book.genre }}</span>
+        </li>
+        <li class="col list-group-item">
+            <span class="card__label">Pages: </span>
+            <span>{{ book.pageCount }}</span>
+        </li>
+        <li class="col list-group-item">
+            <span class="card__label">Price: </span>
+            <span>{{ book.price }}</span>
+        </li>
+        <li class="col list-group-item">
+            <span class="card__label">Publication date: </span>
+            <span>{{ book.publishDate | date: 'yyyy/MM/dd' }}</span>
+        </li>
+    </ul>
+    <div class="my-2 d-flex justify-content-end gap-4">
         <a class="btn btn-warning" role="button" routerLink="/books/edit/{{book.id}}">
-            Edit
+            <i class="fa-solid fa-pen-to-square"></i>
         </a>
-        <button class="btn btn-danger" (click)="removeBook(book.id!)">
-            Remove
+        <button class="btn btn-danger" (click)="toggleModal()">
+            <i class="fa-solid fa-trash"></i>
         </button>
     </div>
+
+    <app-confirmation-modal 
+    *ngIf="isActiveModal" 
+    [bookId]="book.id"
+    (toggleModal)="toggleModal()" 
+    (bookRemoved)="removeBookHandler($event)"
+    />
 </div>
+

@@ -1,0 +1,5 @@
+.message__box {
+    display: block;
+    padding: 3rem;
+    border: 1px solid black;
+}

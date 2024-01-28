@@ -24,7 +24,7 @@ export class BookFormComponent implements OnInit {
       this.bookForm = this.formBuilder.group({
         title: [null, Validators.required],
         author: [null, Validators.required],
-        genre: [null, Validators.required],
+        genre: ["init", Validators.required],
         pageCount: [null, Validators.required],
         price: [null, Validators.required],
         publishDate: [null, Validators.required],
@@ -60,7 +60,7 @@ export class BookFormComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.bookForm.valid) {
+    if (this.bookForm.valid && this.bookForm.value.genre !== 'init') {
       this.bookForm.value.genre = Number(this.bookForm.value.genre);
       
       if (this.bookToEdit) {     

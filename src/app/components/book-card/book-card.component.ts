@@ -1,5 +1,4 @@
-import { Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
-import { BookService } from 'src/app/services/book/book.service';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IBook } from 'src/app/models/book/book.interface';
 
 @Component({
@@ -9,18 +8,14 @@ import { IBook } from 'src/app/models/book/book.interface';
 })
 export class BookCardComponent {
   @Input() book?: IBook;
-  @Output() bookRemoved = new EventEmitter<string>;
+  @Output() bookRemovedEmitter = new EventEmitter<string | number>;
+  isActiveModal: boolean = false;
 
-  constructor(private bookService: BookService) {}
+  toggleModal() {
+    this.isActiveModal = !this.isActiveModal;
+  }
 
-  removeBook(id: string) {
-    this.bookService.removeBook(id).subscribe({
-      next: () => {
-        this.bookRemoved.emit(id);
-      },
-      error: (error) => {
-        this.bookRemoved.emit(error.error.status);
-      } 
-    });
+  removeBookHandler(id: string | number) {
+    this.bookRemovedEmitter.emit(id);
   }
 }

@@ -17,6 +17,7 @@ import { AuthInterceptor } from './interceptors/auth/auth.interceptor';
 import { QuoteCardComponent } from './components/quote-card/quote-card.component';
 import { QuoteFormComponent } from './components/quote-form/quote-form.component';
 import { MessageComponent } from './components/message/message.component';
+import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { MessageComponent } from './components/message/message.component';
     QuoteCardComponent,
     QuoteFormComponent,
     MessageComponent,
+    ConfirmationModalComponent,
   ],
   imports: [
     BrowserModule,

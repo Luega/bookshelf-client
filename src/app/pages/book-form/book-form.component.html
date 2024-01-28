@@ -1,62 +1,64 @@
-<div class="container-fluid w-75 m-auto">
-    <div class="row w-25 m-auto">
+<div class="container-fluid">
+    <div class="row text-center">
         <h1 *ngIf="!bookToEdit">Add a new Book</h1>
     </div>
-    <div class="row w-25 m-auto">
+    <div class="row text-center">
         <h1 *ngIf="bookToEdit">Edit the Book</h1>
     </div>
-    <div class="row w-25 m-auto">
-        <form [formGroup]="bookForm" (submit)="onSubmit()">
-            <div class="form-floating mt-3">
-                <input class="form-control" placeholder="title" type="text" id="title" formControlName="title">
-                <label for="title">Title</label>
-                <p class="text-danger" *ngIf="!bookForm.get('title')?.value && bookForm.get('title')?.touched">
-                    Title is required
-                </p>
-            </div>
-            <div class="form-floating mt-3">
-                <input class="form-control" placeholder="author" type="text" id="author" formControlName="author">
-                <label for="author">Author</label>
-                <p class="text-danger" *ngIf="!bookForm.get('author')?.value && bookForm.get('author')?.touched">
-                    Author is required
-                </p>
-            </div>
-            <div class="form-floating mt-3">
-                <select class="form-select" id="genre" aria-label="Genre" formControlName="genre">
-                    <option value="init">Select a genre</option>
-                    <option *ngFor="let genre of bookGenresArray; let i = index" value={{i}}>{{genre}}</option>
-                </select>
-                <label for="genre">Genre</label>
-                <p class="text-danger" *ngIf="
-                !bookForm.get('genre')?.value && bookForm.get('genre')?.touched
-                ||
-                bookForm.get('genre')?.value === 'init' && bookForm.get('genre')?.touched
-                ">
-                    Genre is required
-                </p>
-            </div>
-            <div class="form-floating mt-3">
-                <input class="form-control" placeholder="pages" type="number" id="pageCount" formControlName="pageCount">
-                <label for="pageCount">Pages</label>
-                <p class="text-danger" *ngIf="!bookForm.get('pageCount')?.value && bookForm.get('pageCount')?.touched">
-                    Pages is required
-                </p>
-            </div>
-            <div class="form-floating mt-3">
-                <input class="form-control" placeholder="price" type="number" id="price" formControlName="price">
-                <label for="price">Price</label>
-                <p class="text-danger" *ngIf="!bookForm.get('price')?.value && bookForm.get('price')?.touched">
-                    Price is required
-                </p>
-            </div>
-            <div class="form-floating mt-3">
-                <input class="form-control" placeholder="publication date" type="date" id="publishDate" formControlName="publishDate">
-                <label for="publishDate">Publication date</label>
-                <p class="text-danger" *ngIf="!bookForm.get('publishDate')?.value && bookForm.get('publishDate')?.touched">
-                    Publication date is required
-                </p>
-            </div>
-            <button class="btn btn-primary mt-3" type="submit" [disabled]="!bookForm.valid || bookForm.get('genre')?.value === 'init'">{{ bookToEdit ? 'Edit' : 'Add' }}</button>
-        </form>
+    <div class="row justify-content-center">
+        <div class="col-10 col-md-6 col-lg-4">
+            <form [formGroup]="bookForm" (submit)="onSubmit()">
+                <div class="form-floating mt-3">
+                    <input class="form-control" placeholder="title" type="text" id="title" formControlName="title">
+                    <label for="title">Title</label>
+                    <p class="text-danger" *ngIf="!bookForm.get('title')?.value && bookForm.get('title')?.touched">
+                        Title is required
+                    </p>
+                </div>
+                <div class="form-floating mt-3">
+                    <input class="form-control" placeholder="author" type="text" id="author" formControlName="author">
+                    <label for="author">Author</label>
+                    <p class="text-danger" *ngIf="!bookForm.get('author')?.value && bookForm.get('author')?.touched">
+                        Author is required
+                    </p>
+                </div>
+                <div class="form-floating mt-3">
+                    <select class="form-select" id="genre" aria-label="Genre" formControlName="genre">
+                        <option value="init">Select a genre</option>
+                        <option *ngFor="let genre of bookGenresArray; let i = index" value={{i}}>{{genre}}</option>
+                    </select>
+                    <label for="genre">Genre</label>
+                    <p class="text-danger" *ngIf="
+                    !bookForm.get('genre')?.value && bookForm.get('genre')?.touched
+                    ||
+                    bookForm.get('genre')?.value === 'init' && bookForm.get('genre')?.touched
+                    ">
+                        Genre is required
+                    </p>
+                </div>
+                <div class="form-floating mt-3">
+                    <input class="form-control" placeholder="pages" type="number" id="pageCount" formControlName="pageCount">
+                    <label for="pageCount">Pages</label>
+                    <p class="text-danger" *ngIf="!bookForm.get('pageCount')?.value && bookForm.get('pageCount')?.touched">
+                        Pages is required
+                    </p>
+                </div>
+                <div class="form-floating mt-3">
+                    <input class="form-control" placeholder="price" type="number" id="price" formControlName="price">
+                    <label for="price">Price</label>
+                    <p class="text-danger" *ngIf="!bookForm.get('price')?.value && bookForm.get('price')?.touched">
+                        Price is required
+                    </p>
+                </div>
+                <div class="form-floating mt-3">
+                    <input class="form-control" placeholder="publication date" type="date" id="publishDate" formControlName="publishDate">
+                    <label for="publishDate">Publication date</label>
+                    <p class="text-danger" *ngIf="!bookForm.get('publishDate')?.value && bookForm.get('publishDate')?.touched">
+                        Publication date is required
+                    </p>
+                </div>
+                <button class="btn btn-primary mt-3" type="submit" [disabled]="!bookForm.valid || bookForm.get('genre')?.value === 'init'">{{ bookToEdit ? 'Edit' : 'Add' }}</button>
+            </form>
+        </div>
     </div>
 </div>

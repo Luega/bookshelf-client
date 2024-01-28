@@ -6,7 +6,7 @@
     <div class="row w-25 m-auto">
         <app-quote-form (createQuote)="onCreateQuote($event)"/>
     </div>
-    <div class="row mx-auto my-5">
+    <div class="row mx-auto my-5 justify-content-center gap-4">
         <app-quote-card *ngFor="let q of quotes" [quote]="q"/>
     </div>
 </div>

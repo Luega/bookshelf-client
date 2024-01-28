@@ -17,12 +17,16 @@
             </p>
         </div>
         <div class="form-floating mt-3">
-            <select class="form-select" aria-label="Genre" id="genre" formControlName="genre">
-                <option selected>Select a genre</option>
+            <select class="form-select" id="genre" aria-label="Genre" formControlName="genre">
+                <option value="init">Select a genre</option>
                 <option *ngFor="let genre of bookGenresArray; let i = index" value={{i}}>{{genre}}</option>
             </select>
             <label for="genre">Genre</label>
-            <p class="text-danger" *ngIf="!bookForm.get('genre')?.value && bookForm.get('genre')?.touched">
+            <p class="text-danger" *ngIf="
+            !bookForm.get('genre')?.value && bookForm.get('genre')?.touched
+            ||
+            bookForm.get('genre')?.value === 'init' && bookForm.get('genre')?.touched
+            ">
                 Genre is required
             </p>
         </div>
@@ -47,6 +51,6 @@
                 Publication date is required
             </p>
         </div>
-        <button class="btn btn-primary mt-3" type="submit" [disabled]="!bookForm.valid">{{ bookToEdit ? 'Edit' : 'Add' }}</button>
+        <button class="btn btn-primary mt-3" type="submit" [disabled]="!bookForm.valid || bookForm.get('genre')?.value === 'init'">{{ bookToEdit ? 'Edit' : 'Add' }}</button>
     </form>
 </div>

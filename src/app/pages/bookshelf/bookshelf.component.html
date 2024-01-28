@@ -1,10 +1,16 @@
-<app-message *ngIf="messageService.message" [message]="messageService.message"/>
 
-<div *ngIf="books.length > 0" class="w-75 m-auto d-flex flex-column gap-4">
-    <button class="btn btn-primary" role="button" [routerLink]="['/books/add']">
-        Add
-    </button>
-    <app-book-card *ngFor="let b of books" [book]="b" (bookRemoved)="onBookRemoved($event)" />
+<div *ngIf="books.length > 0" class="container-fluid w-75">
+    <div class="row m-auto">
+        <app-message *ngIf="messageService.message" [message]="messageService.message"/>
+    </div>
+    <div class="row justify-content-end">
+        <button class="btn btn-primary" role="button" [routerLink]="['/books/add']">
+            Add
+        </button>
+    </div>
+    <div class="row">
+        <app-book-card *ngFor="let b of books" [book]="b" (bookRemoved)="onBookRemoved($event)" />
+    </div>
 </div>
 
 <!-- <div *ngIf="books.length === 0 || !books" class="container-fluid">

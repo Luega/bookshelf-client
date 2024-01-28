@@ -1,21 +1,24 @@
-<app-message *ngIf="messageService.message" [message]="messageService.message"/>
-
-<div class="container-fluid d-flex justify-content-center">
-    <form [formGroup]="loginForm" (submit)="onSubmit()" [ngClass]="[darkMode.isActive ? darkMode.cssClass : '']"> 
-        <div class="form-floating mt-3">
-            <input class="form-control" placeholder="username" type="text" id="username" formControlName="username">
-            <label for="username">Username</label>
-            <p class="mb-0 text-danger" *ngIf="!loginForm.get('username')?.valid && loginForm.get('username')?.touched">
-                Username is required
-            </p>
-        </div>
-        <div  class="form-floating mt-3">
-            <input class="form-control" placeholder="password" type="text" id="password" formControlName="password">
-            <label for="password">Password</label>
-            <p class="mb-0 text-danger" *ngIf="!loginForm.get('password')?.valid && loginForm.get('password')?.touched">
-                Password is required
-            </p>
-        </div>
-        <button class="btn btn-primary mt-4 align-self-center" type="submit" [disabled]="!loginForm.valid">Login</button>
-    </form>
+<div class="container-fluid w-75">
+    <div class="row">
+        <app-message *ngIf="messageService.message" [message]="messageService.message"/>
+    </div>
+    <div class="row w-25 mx-auto mt-5">
+        <form [formGroup]="loginForm" (submit)="onSubmit()" [ngClass]="[darkMode.isActive ? darkMode.cssClass : '']"> 
+            <div class="form-floating mt-3">
+                <input class="form-control" placeholder="username" type="text" id="username" formControlName="username">
+                <label for="username">Username</label>
+                <p class="mb-0 text-danger" *ngIf="!loginForm.get('username')?.valid && loginForm.get('username')?.touched">
+                    Username is required
+                </p>
+            </div>
+            <div  class="form-floating mt-3">
+                <input class="form-control" placeholder="password" type="text" id="password" formControlName="password">
+                <label for="password">Password</label>
+                <p class="mb-0 text-danger" *ngIf="!loginForm.get('password')?.valid && loginForm.get('password')?.touched">
+                    Password is required
+                </p>
+            </div>
+            <button class="btn btn-primary mt-4 align-self-center" type="submit" [disabled]="!loginForm.valid">Login</button>
+        </form>
+    </div>
 </div>

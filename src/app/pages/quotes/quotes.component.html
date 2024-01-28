@@ -1,13 +1,13 @@
 
 <div *ngIf="quotes.length > 0" class="container-fluid w-75">
-    <div class="row">
+    <div class="row w-50 m-auto">
         <app-message *ngIf="this.messageService.message" [message]="this.messageService.message"/>
     </div>
-    <div class="row">
+    <div class="row w-25 m-auto">
         <app-quote-form (createQuote)="onCreateQuote($event)"/>
     </div>
-    <div *ngFor="let q of quotes" class="row">
-        <app-quote-card [quote]="q"/>
+    <div class="row mx-auto my-5">
+        <app-quote-card *ngFor="let q of quotes" [quote]="q"/>
     </div>
 </div>
 

@@ -1,14 +1,14 @@
 <form [formGroup]="quoteForm" (submit)="onSubmit()">
-    <div>
+    <div class="form-floating">
+        <textarea  class="form-control" placeholder="Text of the quote here" id="text" style="height: 100px" formControlName="text"></textarea>
         <label for="text">Text</label>
-        <textarea id="text" cols="30" rows="10" formControlName="text"></textarea>
-        <p *ngIf="!this.quoteForm.get('text')?.valid && this.quoteForm.get('text')?.touched">
+        <p class="text-danger" *ngIf="!this.quoteForm.get('text')?.valid && this.quoteForm.get('text')?.touched">
             Text is required
         </p>
     </div>
-    <div>
+    <div class="form-floating mt-3">
+        <input class="form-control" placeholder="Author" type="text" id="author" formControlName="author">
         <label for="author">Author</label>
-        <input type="text" id="author" formControlName="author">
     </div>
-    <button type="submit" [disabled]="!this.quoteForm.valid">Create</button>
+    <button class="btn btn-primary mt-4" type="submit" [disabled]="!this.quoteForm.valid">Create</button>
 </form>

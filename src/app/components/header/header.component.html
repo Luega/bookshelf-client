@@ -1,30 +1,30 @@
-<header class="app__header container-fluid" [ngClass]="[darkMode.isActive ? darkMode.cssClass : '']">
-  <div class="row justify-content-center">
-    <div class="col-11">
-      <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid">
-          <a class="navbar-brand" [routerLink]="['/books']"><i class="fa-solid fa-book"></i></a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/books']">MyBooks</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/quotes']">MyQuotes</a>
-              </li>
-              <li class="nav-item">
-                <button class="nav-link" (click)="this.darkMode.onToggleDarkMode()">
-                  <i *ngIf="darkMode.isActive" class="fa-regular fa-sun"></i>
-                  <i *ngIf="!darkMode.isActive" class="fa-solid fa-moon"></i>
-                </button>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
+<header class="app__header w-75 m-auto d-flex align-items-center" [ngClass]="[darkMode.isActive ? darkMode.cssClass : '']">
+  <nav class="navbar navbar-expand-lg w-100">
+    <div class="container-fluid mt-2">
+      <a class="navbar-brand" [routerLink]="['/books']"><i class="fa-solid fa-book"></i></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/books']">MyBooks</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/quotes']">MyQuotes</a>
+          </li>
+          <li class="nav-item d-lg-none">
+            <button class="nav-link" (click)="this.darkMode.onToggleDarkMode()">
+              <i *ngIf="darkMode.isActive" class="fa-regular fa-sun"></i>
+              <i *ngIf="!darkMode.isActive" class="fa-solid fa-moon"></i>
+            </button>
+          </li>
+        </ul>
+      </div>
+      <button class="nav-link d-none d-lg-block" (click)="this.darkMode.onToggleDarkMode()">
+        <i *ngIf="darkMode.isActive" class="fa-regular fa-sun"></i>
+        <i *ngIf="!darkMode.isActive" class="fa-solid fa-moon"></i>
+      </button>
     </div>
-  </div>
+  </nav>
 </header>

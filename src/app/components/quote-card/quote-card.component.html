@@ -1,4 +1,4 @@
-<div class="my__quote-card card mb-4" *ngIf="quote" [ngClass]="[darkMode.isActive ? darkMode.cssClass : '']">
+<div class="my__quote-card card mb-4 shadow-sm" *ngIf="quote" [ngClass]="[darkMode.isActive ? darkMode.cssClass : '']">
     <div class="card-body">
         <blockquote class="blockquote mb-0">
           <p>{{ quote.text }}</p>

@@ -16,6 +16,7 @@
     --error-border-color: rgb(255,0,0);
 
     --min-height-header: 80px;
-    --min-height-main: calc(100vh - (var(--min-height-header) + var(--min-height-footer)));
+    --min-height-main: calc(100vh - (var(--min-height-header) + var(--min-height-footer) + (var(--margin-from-main)*2)));
     --min-height-footer: 80px;
+    --margin-from-main: 40px;
 }

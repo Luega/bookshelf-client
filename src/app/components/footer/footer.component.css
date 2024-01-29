@@ -1,5 +1,6 @@
 .app__footer {
     min-height: var(--min-height-footer);
+    margin-top: var(--margin-from-main);
 }
 
 .app__footer i {

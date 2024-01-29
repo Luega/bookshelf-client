@@ -1,5 +1,6 @@
 .app__header {
     min-height: var(--min-height-header);
+    margin-bottom: var(--margin-from-main);
 }
 
 .my__hamb--menu {

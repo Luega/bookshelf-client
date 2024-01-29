@@ -1,4 +1,4 @@
-<div class="container-fluid my-5">
+<div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-10 col-md-6 col-lg-3">
             <app-message *ngIf="messageService.message" [message]="messageService.message"/>
@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col d-flex justify-content-center align-items-center gap-4">
             <h1>My Bookshelf</h1>
-            <button class="btn btn-primary" role="button" [routerLink]="['/books/add']">
+            <button class="btn btn-primary shadow-sm" role="button" [routerLink]="['/books/add']">
                 <i class="fa-solid fa-plus"></i>
             </button>
         </div>

@@ -3,7 +3,7 @@
 }
 
 .my__hamb--menu {
-    width: 40%;
+    width: 75%;
     height: 100vh;
     padding-top: 80px;
     z-index: 99;
@@ -40,4 +40,10 @@
 .app__header.dark-mode .nav-link:hover,
 .app__header.dark-mode .my__hamb:hover {
     color: var(--darkmode-text-color-hover);
+}
+
+@media (min-width: 400px) {
+    .my__hamb--menu {
+        width: 40%;
+    }
 }

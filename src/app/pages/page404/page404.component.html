@@ -1,1 +1,19 @@
-<p>page404 works!</p>
+<div class="container-fluid d-flex flex-column align-items-center">
+    <h1 class="my-5">Oops! Error 404 - Page Not Found</h1>
+    <p>
+        The page you're looking for seems to have disappeared. Maybe it's out exploring the web!
+    </p>
+    <div class="my-3">
+        <p class="mb-0">But don't worry, you can find your way back:</p>
+        <ul class="navbar-nav mb-3">
+            <li><a [routerLink]="['/books']">Explor your books</a></li>
+            <li><a [routerLink]="['/quotes']">Go to your quotes</a></li>
+        </ul>
+    </div>
+    <p>
+        If you believe this is an error, let our Support Team know.
+    </p>
+    <p class="mt-5">
+        Happy navigating!
+    </p>
+</div>

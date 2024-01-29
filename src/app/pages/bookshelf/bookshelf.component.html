@@ -1,15 +1,13 @@
-<div *ngIf="books.length > 0" class="container-fluid">
+<div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-10 col-md-6 col-lg-3">
             <app-message *ngIf="messageService.message" [message]="messageService.message"/>
         </div>
     </div>
-    <div class="row text-center">
-        <h1>My Bookshelf</h1>
-    </div>
-    <div class="row justify-content-center">
-        <div class="col-10 col-md-6 col-xl-8">
-            <button class="btn btn-primary" role="button" [routerLink]="['/books/add']">
+    <div class="row">
+        <div class="col d-flex justify-content-center align-items-center gap-4">
+            <h1>My Bookshelf</h1>
+            <button class="btn btn-primary shadow-sm" role="button" [routerLink]="['/books/add']">
                 <i class="fa-solid fa-plus"></i>
             </button>
         </div>
@@ -19,10 +17,15 @@
             <app-book-card [book]="b" (bookRemovedEmitter)="onBookRemoved($event)" />
         </div>
     </div>
+    <div *ngIf="isLoading" class="container-fluid">
+        <div class="row text-center pt-5">
+            <h2>Loading...</h2>
+        </div>
+    </div>
+    <div *ngIf="books.length === 0 && !isLoading || !books && !isLoading" class="container-fluid">
+        <div class="row text-center pt-5">
+            <h2>No Books</h2>
+        </div>
+    </div>
 </div>
 
-<!-- <div *ngIf="books.length === 0 || !books" class="container-fluid">
-    <div class="row">
-        <h2>No Books</h2>
-    </div>
-</div> -->

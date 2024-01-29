@@ -1,0 +1,10 @@
+.my__book-form input,
+.my__book-form select {
+    background-color: var(--lightmode-bg-secondary-color);
+}
+
+.my__book-form.dark-mode input,
+.my__book-form.dark-mode select {
+    color: var(--darkmode-text-color);
+    background-color: var(--darkmode-bg-secondary-color);
+}

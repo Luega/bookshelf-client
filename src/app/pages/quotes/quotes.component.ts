@@ -12,6 +12,7 @@ import { QuoteService } from 'src/app/services/quote/quote.service';
 })
 export class QuotesComponent implements OnInit, OnDestroy {
   quotes: IQuote[] = []
+  isLoading: boolean = false;
 
   constructor(
     private quoteService: QuoteService,
@@ -26,13 +27,19 @@ export class QuotesComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     if (this.messageService.timeOutMessage) {
       clearTimeout(this.messageService.timeOutMessage);
+      this.messageService.message = null;
     }
   }
 
   loadQuotes() {
+    this.isLoading = true;
     this.quoteService.getQuotes().subscribe({
-      next: (data: IQuote[]) => this.quotes = data,
+      next: (data: IQuote[]) => {
+        this.isLoading = false;
+        this.quotes = data;
+      },
       error: (error) => {
+        this.isLoading = false;
         if (error.error.status === 401) {
           this.router.navigate(['login'], { queryParams: { expired: 'true' } });
         } else {

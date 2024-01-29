@@ -1,3 +1,13 @@
 .app__main {
     min-height: var(--min-height-main);
 }
+
+.app__container {
+    color: var(--lightmode-text-color);
+    background-color: var(--lightmode-bg-primary-color);
+}
+
+.app__container.dark-mode {
+    color: var(--darkmode-text-color);
+    background-color: var(--darkmode-bg-primary-color);
+}

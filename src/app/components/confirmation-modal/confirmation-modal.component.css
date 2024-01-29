@@ -7,3 +7,11 @@
     z-index: 99;
     background-color: rgba(0, 0, 0, 0.5);
 }
+
+.my__modal .modal__card {
+    background-color: var(--lightmode-bg-secondary-color);
+}
+
+.my__modal.dark-mode .modal__card {
+    background-color: var(--darkmode-bg-secondary-color);
+}

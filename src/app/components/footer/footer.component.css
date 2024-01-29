@@ -1,3 +1,16 @@
 .app__footer {
     min-height: var(--min-height-footer);
+    margin-top: var(--margin-from-main);
+}
+
+.app__footer.dark-mode {
+    border-top: 1px solid white;
+}
+
+.app__footer i {
+    color: var(--lightmode-text-color);
+}
+
+.app__footer.dark-mode i {
+    color: var(--darkmode-text-color);
 }

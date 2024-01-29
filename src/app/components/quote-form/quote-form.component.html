@@ -1,14 +1,14 @@
-<form [formGroup]="quoteForm" (submit)="onSubmit()">
+<form class="my__quote-form" [formGroup]="quoteForm" (submit)="onSubmit()" [ngClass]="[darkMode.isActive ? darkMode.cssClass : '']">
     <div class="form-floating">
-        <textarea  class="form-control" placeholder="Text of the quote here" id="text" style="height: 100px" formControlName="text"></textarea>
+        <textarea  class="form-control shadow-sm" placeholder="Text of the quote here" id="text" style="height: 100px" formControlName="text"></textarea>
         <label for="text">Text</label>
         <p class="text-danger" *ngIf="!this.quoteForm.get('text')?.valid && this.quoteForm.get('text')?.touched">
             Text is required
         </p>
     </div>
     <div class="form-floating mt-3">
-        <input class="form-control" placeholder="Author" type="text" id="author" formControlName="author">
+        <input class="form-control shadow-sm" placeholder="Author" type="text" id="author" formControlName="author">
         <label for="author">Author</label>
     </div>
-    <button class="btn btn-primary mt-4" type="submit" [disabled]="!this.quoteForm.valid">Create</button>
+    <button class="btn btn-primary mt-4 shadow-sm" type="submit" [disabled]="!this.quoteForm.valid">Create</button>
 </form>

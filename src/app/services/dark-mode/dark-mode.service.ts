@@ -9,5 +9,13 @@ export class DarkModeService {
 
   onToggleDarkMode() {
     this.isActive = !this.isActive;
+    localStorage.setItem('isDarkMode', this.isActive.toString());
+  }
+
+  checkLocalStorage() {
+    const dataInLocalStorage = localStorage.getItem('isDarkMode');
+    if (dataInLocalStorage) {
+      dataInLocalStorage == 'true' ? this.isActive = true : this.isActive = false;
+    }
   }
 }

@@ -1,0 +1,9 @@
+.my__quote-form input,
+.my__quote-form textarea {
+    background-color: var(--lightmode-bg-secondary-color);
+}
+
+.my__quote-form.dark-mode input,
+.my__quote-form.dark-mode textarea {
+    background-color: var(--darkmode-bg-secondary-color);
+}

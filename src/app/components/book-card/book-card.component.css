@@ -2,3 +2,12 @@
     display: block;
     font-weight: 200;
 }
+
+.my__book-card li {
+    background-color: var(--lightmode-bg-secondary-color);
+}
+
+.my__book-card.dark-mode li {
+    color: var(--darkmode-text-color);
+    background-color: var(--darkmode-bg-secondary-color);
+}

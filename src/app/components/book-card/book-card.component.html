@@ -1,5 +1,5 @@
-<div *ngIf="book" class="mt-5">
-    <ul class="row list-group list-group-horizontal-xl">
+<div *ngIf="book" class="my__book-card mt-5" [ngClass]="[darkMode.isActive ? darkMode.cssClass : '']">
+    <ul class="row list-group list-group-horizontal-xl text-xl-center shadow-sm">
         <li class="col list-group-item">
             <span class="card__label">Id: </span>
             <span>{{ book.id }}</span>
@@ -14,7 +14,7 @@
         </li>
         <li class="col list-group-item">
             <span class="card__label">Genre: </span>
-            <span>{{ book.genre }}</span>
+            <span>{{ bookGenre[book.genre] }}</span>
         </li>
         <li class="col list-group-item">
             <span class="card__label">Pages: </span>
@@ -30,10 +30,10 @@
         </li>
     </ul>
     <div class="my-2 d-flex justify-content-end gap-4">
-        <a class="btn btn-warning" role="button" routerLink="/books/edit/{{book.id}}">
+        <a class="btn btn-warning shadow-sm" role="button" routerLink="/books/edit/{{book.id}}">
             <i class="fa-solid fa-pen-to-square"></i>
         </a>
-        <button class="btn btn-danger" (click)="toggleModal()">
+        <button class="btn btn-danger shadow-sm" (click)="toggleModal()">
             <i class="fa-solid fa-trash"></i>
         </button>
     </div>

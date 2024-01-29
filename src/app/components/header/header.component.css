@@ -1,8 +1,58 @@
 .app__header {
     min-height: var(--min-height-header);
-    background-color: var(--lightmode-primary-color);
+    margin-bottom: var(--margin-from-main);
 }
 
 .app__header.dark-mode {
-    background-color: var(--darkmode-primary-color);
+    border-bottom: 1px solid white;
+}
+
+.my__hamb--menu {
+    width: 75%;
+    height: 100vh;
+    padding-top: 80px;
+    z-index: 99;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: var(--lightmode-bg-secondary-color);
+    border-left: 1px solid var(--lightmode-text-color);
+}
+
+.my__hamb {
+    background-color: var(--lightmode-bg-secondary-color);
+    border: 1px solid black;
+}
+
+.app__header.dark-mode .my__hamb {
+    border: 1px solid white;
+}
+
+.app__header.dark-mode .my__hamb--menu {
+    border-left: 1px solid var(--darkmode-text-color);
+}
+
+.app__header.dark-mode .my__hamb,
+.app__header.dark-mode .my__hamb--menu {
+    background-color: var(--darkmode-bg-secondary-color);
+}
+
+.app__header.dark-mode .nav-link,
+.app__header.dark-mode .my__hamb {
+    color: var(--darkmode-text-color);
+}
+
+.app__header.dark-mode .nav-link:hover,
+.app__header.dark-mode .my__hamb:hover,
+.app__header.dark-mode .nav-link:focus,
+.app__header.dark-mode .my__hamb:focus,
+.app__header.dark-mode .nav-link:active,
+.app__header.dark-mode .my__hamb:active {
+    color: var(--darkmode-text-color-hover);
+}
+
+@media (min-width: 400px) {
+    .my__hamb--menu {
+        width: 40%;
+    }
 }

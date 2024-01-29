@@ -61,6 +61,7 @@ export class BookshelfComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     if (this.messageService.timeOutMessage) {
       clearTimeout(this.messageService.timeOutMessage);
+      this.messageService.message = null;
     }
   }
 

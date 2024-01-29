@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { MessageType } from 'src/app/models/message/message-type.enum';
 import { IMessage } from 'src/app/models/message/message.interface';
 
 @Injectable({

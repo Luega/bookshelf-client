@@ -1,4 +1,4 @@
-<header class="app__header container-fluid d-flex align-items-center fs-5 shadow-sm" [ngClass]="[darkMode.isActive ? darkMode.cssClass : '']">
+<header class="app__header container-fluid px-md-5 d-flex align-items-center fs-5 shadow-sm" [ngClass]="[darkMode.isActive ? darkMode.cssClass : '']">
   <div class="row w-100 m-auto d-flex justify-content-around">
 
     <div class="col d-flex align-items-center">
@@ -20,7 +20,7 @@
     </div>
 
     <div class="col d-none d-md-flex justify-content-end align-items-center">
-      <a *ngIf="isAuth" class="nav-link me-4 fs-6 fw-lighter" (click)="logOut()">Logout</a>
+      <a *ngIf="isAuth" class="nav-link me-4 fs-6 fw-lighter cursor-pointer" (click)="logOut()">Logout</a>
       <button class="nav-link" (click)="this.darkMode.onToggleDarkMode()">
         <i *ngIf="darkMode.isActive" class="fa-regular fa-sun"></i>
         <i *ngIf="!darkMode.isActive" class="fa-solid fa-moon"></i>

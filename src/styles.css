@@ -8,9 +8,12 @@
     --darkmode-text-color: rgb(255, 255, 255);
     --darkmode-text-color-hover: rgba(255, 255, 255, 0.8);
 
-    --success-color: rgb(218,239,218);
-    --option-color: rgb(250,245,208);
-    --error-color: rgb(251,212,209);
+    --success-bg-color: rgb(218,239,218);
+    --success-border-color: rgb(0,128,0);
+    --option-bg-color: rgb(250,245,208);
+    --option-border-color: rgb(255, 215, 0);
+    --error-bg-color: rgb(251,212,209);
+    --error-border-color: rgb(255,0,0);
 
     --min-height-header: 80px;
     --min-height-main: calc(100vh - (var(--min-height-header) + var(--min-height-footer)));

@@ -3,3 +3,19 @@
     padding: 3rem;
     border: 1px solid black;
 }
+
+.msg-success {
+    color: var(--lightmode-text-color);
+    background-color: var(--success-bg-color);
+    border: 2px solid var(--success-border-color);
+}
+.msg-option {
+    color: var(--lightmode-text-color);
+    border: 2px solid var(--option-border-color);
+    background-color: var(--option-bg-color);
+}
+.msg-error {
+    color: var(--lightmode-text-color);
+    border: 2px solid var(--error-border-color);
+    background-color: var(--error-bg-color);
+}

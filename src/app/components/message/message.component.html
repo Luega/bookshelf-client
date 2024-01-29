@@ -1,6 +1,6 @@
 <div *ngIf="message" 
-class="mx-auto mb-5 p-4 text-center border rounded"
-[ngClass]="{'text-bg-danger': isErrorType, 'text-bg-info': isOptionType, 'text-bg-success': isSuccessType}"
+class="mx-auto mb-5 p-4 text-center rounded"
+[ngClass]="{'msg-error': isErrorType, 'msg-option': isOptionType, 'msg-success': isSuccessType}"
 >
     {{ message.text }}
 </div>

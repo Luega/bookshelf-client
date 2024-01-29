@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="my__book-form container-fluid" [ngClass]="[darkMode.isActive ? darkMode.cssClass : '']">
     <div class="row text-center">
         <h1 *ngIf="!bookToEdit">Add a new Book</h1>
     </div>

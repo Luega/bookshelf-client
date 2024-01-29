@@ -1,7 +1,7 @@
-<div class="my__modal">
+<div class="my__modal" [ngClass]="[darkMode.isActive ? darkMode.cssClass : '']">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-10 col-sm-8 col-md-6 col-lg-5 col-xl-4 mx-auto mt-5 p-4 bg-white rounded">
+            <div class="modal__card col-10 col-sm-8 col-md-6 col-lg-5 col-xl-4 mx-auto mt-5 p-4 rounded">
                 <div class="mb-4 d-flex justify-content-between">
                     <h1 class="fs-5">{{ question }}</h1>
                     <button type="button" class="btn-close" (click)="closeModal()"></button>

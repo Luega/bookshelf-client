@@ -8,5 +8,13 @@ import { DarkModeService } from 'src/app/services/dark-mode/dark-mode.service';
 })
 
 export class HeaderComponent {
+  isMenuOpen: boolean = false;
+
    constructor(public darkMode: DarkModeService) {}
+
+   togleMenu() {
+    setTimeout(() => {
+      this.isMenuOpen = !this.isMenuOpen;    
+    }, 10);
+   }
 }

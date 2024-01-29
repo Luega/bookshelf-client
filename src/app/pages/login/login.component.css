@@ -1,0 +1,7 @@
+.my__login input {
+    background-color: var(--lightmode-bg-secondary-color);
+}
+
+.my__login.dark-mode input {
+    background-color: var(--darkmode-bg-secondary-color);
+}

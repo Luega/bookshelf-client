@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { BookService } from 'src/app/services/book/book.service';
+import { DarkModeService } from 'src/app/services/dark-mode/dark-mode.service';
 
 @Component({
   selector: 'app-confirmation-modal',
@@ -12,7 +13,10 @@ export class ConfirmationModalComponent {
   @Output() bookRemoved = new EventEmitter<string>;
   @Output() toggleModal = new EventEmitter;
 
-  constructor(private bookService: BookService) {}
+  constructor(
+    private bookService: BookService,
+    public darkMode: DarkModeService
+    ) {}
 
   closeModal() {
     this.toggleModal.emit();

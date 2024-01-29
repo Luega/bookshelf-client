@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { IQuote } from 'src/app/models/quote/quote.interface';
+import { DarkModeService } from 'src/app/services/dark-mode/dark-mode.service';
 
 @Component({
   selector: 'app-quote-card',
@@ -8,4 +9,6 @@ import { IQuote } from 'src/app/models/quote/quote.interface';
 })
 export class QuoteCardComponent {
   @Input() quote?: IQuote;
+
+  constructor(public darkMode: DarkModeService) {}
 }

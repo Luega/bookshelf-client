@@ -2,6 +2,7 @@ import { IQuote } from 'src/app/models/quote/quote.interface';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { QuoteService } from 'src/app/services/quote/quote.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DarkModeService } from 'src/app/services/dark-mode/dark-mode.service';
 
 @Component({
   selector: 'app-quote-form',
@@ -15,6 +16,7 @@ export class QuoteFormComponent {
   constructor(
     private formBuilder: FormBuilder,
     private quoteService: QuoteService,
+    public darkMode: DarkModeService
   ) {
     this.quoteForm = this.formBuilder.group({
       text: [null, Validators.required],

@@ -1,0 +1,12 @@
+.my__quote-card {
+    background-color: var(--lightmode-bg-secondary-color);
+}
+
+.my__quote-card.dark-mode {
+    color: var(--darkmode-text-color);
+    background-color: var(--darkmode-bg-secondary-color);
+}
+
+.my__quote-card.dark-mode cite {
+    color: var(--darkmode-text-color-hover);
+}

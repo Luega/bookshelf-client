@@ -1,4 +1,4 @@
-<div *ngIf="book" class="mt-5">
+<div *ngIf="book" class="my__book-card mt-5" [ngClass]="[darkMode.isActive ? darkMode.cssClass : '']">
     <ul class="row list-group list-group-horizontal-xl">
         <li class="col list-group-item">
             <span class="card__label">Id: </span>

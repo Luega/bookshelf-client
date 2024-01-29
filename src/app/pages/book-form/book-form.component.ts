@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IBook } from 'src/app/models/book/book.interface';
 import { BookService } from 'src/app/services/book/book.service';
+import { DarkModeService } from 'src/app/services/dark-mode/dark-mode.service';
 
 @Component({
   selector: 'app-book-form',
@@ -20,6 +21,7 @@ export class BookFormComponent implements OnInit {
     private bookService: BookService,
     private router: Router,
     private route: ActivatedRoute,
+    public darkMode: DarkModeService
     ) {
       this.bookForm = this.formBuilder.group({
         title: [null, Validators.required],

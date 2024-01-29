@@ -1,8 +1,16 @@
 :root {
-    /* --lightmode-primary-color: red;
-    --lightmode-secondary-color: orange;
-    --darkmode-primary-color: blue;
-    --darkmode-secondary-color: black; */
+    --lightmode-bg-primary-color: rgb(221,228,230);
+    --lightmode-bg-secondary-color: rgb(237,239,241);
+    --darkmode-bg-primary-color: rgb(34,34,34);
+    --darkmode-bg-secondary-color: rgb(55,72,80);
+
+    --lightmode-text-color: rgb(0, 0, 0);
+    --darkmode-text-color: rgb(255, 255, 255);
+    --darkmode-text-color-hover: rgba(255, 255, 255, 0.8);
+
+    --success-color: rgb(218,239,218);
+    --option-color: rgb(250,245,208);
+    --error-color: rgb(251,212,209);
 
     --min-height-header: 80px;
     --min-height-main: calc(100vh - (var(--min-height-header) + var(--min-height-footer)));

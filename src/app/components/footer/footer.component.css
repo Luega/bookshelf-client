@@ -3,6 +3,10 @@
     margin-top: var(--margin-from-main);
 }
 
+.app__footer.dark-mode {
+    border-top: 1px solid white;
+}
+
 .app__footer i {
     color: var(--lightmode-text-color);
 }

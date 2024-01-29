@@ -3,6 +3,10 @@
     margin-bottom: var(--margin-from-main);
 }
 
+.app__header.dark-mode {
+    border-bottom: 1px solid white;
+}
+
 .my__hamb--menu {
     width: 75%;
     height: 100vh;

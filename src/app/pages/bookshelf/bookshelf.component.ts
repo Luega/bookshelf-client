@@ -12,6 +12,7 @@ import { MessageService } from 'src/app/services/message/message.service';
 })
 export class BookshelfComponent implements OnInit, OnDestroy {
   books: IBook[] = [];
+  isLoading: boolean = false;
 
   constructor(
     private bookService: BookService,
@@ -64,12 +65,15 @@ export class BookshelfComponent implements OnInit, OnDestroy {
   }
 
   loadBooks() {
+    this.isLoading = true;
     this.bookService.getBooks().subscribe({
       next: (data) => {
+        this.isLoading = false;
         this.books = data;
         this.bookService.convertStringDatesToObjects(this.books);
       },
       error: (error) => {
+        this.isLoading = false;
         if (error.error.status === 401) {
           this.router.navigate(['login'], { queryParams: { expired: 'true' } });
         } else {

@@ -17,7 +17,12 @@
             <app-book-card [book]="b" (bookRemovedEmitter)="onBookRemoved($event)" />
         </div>
     </div>
-    <div *ngIf="books.length === 0 || !books" class="container-fluid">
+    <div *ngIf="isLoading" class="container-fluid">
+        <div class="row text-center pt-5">
+            <h2>Loading...</h2>
+        </div>
+    </div>
+    <div *ngIf="books.length === 0 && !isLoading || !books && !isLoading" class="container-fluid">
         <div class="row text-center pt-5">
             <h2>No Books</h2>
         </div>

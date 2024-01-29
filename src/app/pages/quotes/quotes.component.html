@@ -13,7 +13,10 @@
             <app-quote-card *ngFor="let q of quotes" [quote]="q"/>
         </div>
     </div>
-    <div *ngIf="quotes.length === 0 || !quotes" class="row">
+    <div *ngIf="isLoading" class="row">
+        <h2 class="text-center">Loading...</h2>
+    </div>
+    <div *ngIf="quotes.length === 0 && !isLoading || !quotes && isLoading" class="row">
         <h2 class="text-center">No Quotes</h2>
     </div>
 </div>

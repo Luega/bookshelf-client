@@ -39,7 +39,11 @@
 }
 
 .app__header.dark-mode .nav-link:hover,
-.app__header.dark-mode .my__hamb:hover {
+.app__header.dark-mode .my__hamb:hover,
+.app__header.dark-mode .nav-link:focus,
+.app__header.dark-mode .my__hamb:focus,
+.app__header.dark-mode .nav-link:active,
+.app__header.dark-mode .my__hamb:active {
     color: var(--darkmode-text-color-hover);
 }
 

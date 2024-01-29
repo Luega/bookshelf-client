@@ -1,3 +1,11 @@
 .app__footer {
     min-height: var(--min-height-footer);
 }
+
+.app__footer i {
+    color: var(--lightmode-text-color);
+}
+
+.app__footer.dark-mode i {
+    color: var(--darkmode-text-color);
+}

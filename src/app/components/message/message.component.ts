@@ -14,7 +14,6 @@ export class MessageComponent implements OnInit {
   isSuccessType: boolean = false;
 
   ngOnInit(): void {
-    console.log(this.message?.type);
     if (this.message) {
       switch (this.message.type) {
         case MessageType.error:
@@ -30,7 +29,5 @@ export class MessageComponent implements OnInit {
           break;
       }
     }
-    console.log(this.isOptionType);
-    
   }
 }
